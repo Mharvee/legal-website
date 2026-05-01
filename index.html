@@ -3,26 +3,671 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emeka Onohwakpor and Co | Legal Practitioners</title>
+<title>Emeka Onohwakpor & Co | Thompson Chambers | Legal Practitioners</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <style>
+    
+  :root {
+    --navy: #0a1628;
+    --royal: #1a3a6b;
+    --cobalt: #1e52a0;
+    --sky: #2d7dd2;
+    --ice: #e8f1fc;
+    --white: #ffffff;
+    --off-white: #f5f7fa;
+    --charcoal: #1c1c2e;
+    --mid-grey: #6b7280;
+    --light-grey: #e5e9f0;
+    --gold: #c9a84c;
+    --gold-light: #e8cc82;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+  }
+
+  .nav-crest {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--navy); font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 600;
+    color: var(--white); letter-spacing: 0.02em; line-height: 1.2;
+  }
+
+  .nav-brand span { display: block; font-size: 10px; font-family: 'DM Sans', sans-serif;
+    color: var(--gold); letter-spacing: 0.15em; font-weight: 400; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy) !important;
+    padding: 10px 22px; border-radius: 2px;
+    font-weight: 500 !important; font-size: 12px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .nav-cta:hover { opacity: 0.9; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(30,82,160,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(30,82,160,0.12) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(30,82,160,0.35) 0%, transparent 70%);
+    top: -200px; right: -100px; pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    bottom: 100px; left: 200px; pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 10%; max-width: 1400px; margin: 0 auto; width: 100%;
+    padding-top: 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 7px 18px; border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag span {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+
+  .hero-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 700; color: var(--white);
+    line-height: 1.1; letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-title em { font-style: italic; color: var(--gold); }
+
+  .hero-sub {
+    font-size: 16px; color: rgba(255,255,255,0.6);
+    line-height: 1.75; max-width: 480px; margin-bottom: 44px;
+    font-family: 'Cormorant Garamond', serif; font-size: 19px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy); padding: 14px 32px; border-radius: 2px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 14px 32px; border-radius: 2px;
+    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 400; text-decoration: none; transition: all 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    margin-top: 60px; display: flex; gap: 48px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; font-weight: 700; color: var(--white); line-height: 1;
+  }
+
+  .stat-num span { color: var(--gold); }
+
+  .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); margin-top: 6px; }
+
+  .hero-right { animation: fadeUp 0.8s 0.2s ease both; }
+
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 36px;
+    backdrop-filter: blur(10px);
+    position: relative; overflow: hidden;
+  }
+
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--sky));
+  }
+
+  .card-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--white); margin-bottom: 24px;
+  }
+
+  .practice-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .practice-item:last-child { border-bottom: none; }
+  .practice-item:hover .practice-arrow { color: var(--gold); transform: translateX(4px); }
+
+  .practice-icon {
+    width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
+    background: rgba(30,82,160,0.4); display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+
+  .practice-name { font-size: 14px; font-weight: 500; color: var(--white); }
+  .practice-desc { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+  .practice-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 18px; transition: all 0.2s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 120px 10%;
+    background: var(--off-white);
+    position: relative;
+  }
+
+  .section-label {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+
+  .section-label span {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--cobalt); font-weight: 500;
+  }
+
+  .section-line { width: 40px; height: 1px; background: var(--gold); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px); font-weight: 700;
+    color: var(--navy); line-height: 1.1; margin-bottom: 24px;
+  }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .about-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; line-height: 1.8; color: #444; margin-bottom: 20px;
+  }
+
+  .about-highlight {
+    background: var(--navy);
+    padding: 24px 28px; border-radius: 4px; margin-top: 32px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .about-highlight p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 20px; color: var(--white);
+    line-height: 1.5; margin: 0;
+  }
+
+  .about-right { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .value-card {
+    background: var(--white);
+    padding: 28px 24px; border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(10,22,40,0.07);
+    border-top: 3px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .value-card:hover { border-top-color: var(--gold); transform: translateY(-4px); }
+
+  .value-icon { font-size: 28px; margin-bottom: 12px; }
+  .value-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .value-text { font-size: 13px; color: var(--mid-grey); line-height: 1.65; }
+
+  /* ── PRACTICE AREAS ── */
+  .practice {
+    padding: 120px 10%;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+
+  .practice::before {
+    content: '';
+    position: absolute; bottom: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,82,160,0.3) 0%, transparent 70%);
+  }
+
+  .practice .section-title { color: var(--white); }
+  .practice .section-label span { color: var(--gold-light); }
+
+  .practice-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px; overflow: hidden; margin-top: 60px;
+  }
+
+  .pa-card {
+    background: rgba(10,22,40,0.8);
+    padding: 40px 32px;
+    transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
+  }
+
+  .pa-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 0;
+    background: linear-gradient(180deg, rgba(30,82,160,0.3) 0%, rgba(30,82,160,0.0) 100%);
+    transition: height 0.3s;
+  }
+
+  .pa-card:hover::after { height: 100%; }
+  .pa-card:hover .pa-icon { background: var(--gold); color: var(--navy); }
+
+  .pa-icon {
+    width: 52px; height: 52px; background: rgba(30,82,160,0.4);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px; transition: all 0.3s;
+  }
+
+  .pa-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--white); margin-bottom: 12px;
+  }
+
+  .pa-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+  .pa-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-top: 20px; font-weight: 500;
+    text-decoration: none; transition: gap 0.2s;
+  }
+
+  .pa-link:hover { gap: 14px; }
+
+  /* ── TEAM ── */
+  .team {
+    padding: 120px 10%;
+    background: var(--white);
+  }
+
+  .team-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 60px;
+  }
+
+  .team-card {
+    position: relative; overflow: hidden; border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(10,22,40,0.1);
+    transition: transform 0.3s;
+  }
+
+  .team-card:hover { transform: translateY(-6px); }
+
+  .team-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--royal);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .team-photo-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, var(--royal) 0%, var(--navy) 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .team-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px; color: rgba(255,255,255,0.15); font-weight: 700;
+    letter-spacing: -4px;
+  }
+
+  .team-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(10,22,40,0.95) 0%, transparent 50%);
+  }
+
+  .team-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 20px;
+  }
+
+  .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; color: var(--white); font-weight: 600; line-height: 1.2;
+  }
+
+  .team-role { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold); margin-top: 4px; line-height: 1.4; }
+
+  .team-bar {
+    display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap;
+  }
+
+  .team-tag {
+    font-size: 10px; background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7); padding: 3px 8px; border-radius: 100px;
+  }
+
+  /* ── OFFICES ── */
+  .offices {
+    padding: 80px 10%;
+    background: var(--off-white);
+  }
+
+  .offices .section-title { text-align: center; margin-bottom: 48px; }
+  .offices .section-label { justify-content: center; }
+
+  .offices-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+  }
+
+  .office-card {
+    background: var(--white);
+    border-radius: 8px; padding: 24px 20px;
+    box-shadow: 0 2px 16px rgba(10,22,40,0.07);
+    border-top: 3px solid var(--gold);
+    text-align: center;
+  }
+
+  .office-city {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--navy); font-weight: 700; margin-bottom: 8px;
+  }
+
+  .office-contact { font-size: 12px; color: var(--mid-grey); line-height: 1.8; }
+  .office-contact strong { display: block; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--cobalt); margin-bottom: 6px; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 120px 10%;
+    background: var(--ice);
+  }
+
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px;
+  }
+
+  .testi-card {
+    background: var(--white);
+    padding: 36px 32px; border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(10,22,40,0.06);
+    position: relative;
+  }
+
+  .testi-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px; color: var(--gold); opacity: 0.3;
+    position: absolute; top: 16px; left: 28px; line-height: 1;
+  }
+
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; line-height: 1.7; color: var(--charcoal);
+    margin-bottom: 24px; padding-top: 20px;
+  }
+
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+
+  .testi-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cobalt), var(--royal));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; color: var(--white); font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .testi-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .testi-company { font-size: 12px; color: var(--mid-grey); }
+  .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 4px; }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 120px 10%;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+
+  .contact .section-title { color: var(--white); }
+  .contact .section-label span { color: var(--gold-light); }
+
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; color: rgba(255,255,255,0.6); line-height: 1.75;
+    margin-top: 20px;
+  }
+
+  .contact-info { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+
+  .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+
+  .contact-icon {
+    width: 44px; height: 44px; background: rgba(30,82,160,0.4);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+
+  .contact-item-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px; }
+  .contact-item-value { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+  .contact-form {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 40px;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--white); margin-bottom: 28px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); display: block; margin-bottom: 8px; }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px; padding: 12px 16px;
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+  .form-select option { background: var(--navy); color: var(--white); }
+  .form-textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy); padding: 14px;
+    border: none; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  footer {
+    background: #060e1c;
+    padding: 60px 10% 32px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand p {
+    font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7;
+    margin-top: 16px; max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-col ul li a {
+    font-size: 13px; color: rgba(255,255,255,0.45);
+    text-decoration: none; transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--white); }
+
+  .footer-bar {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-bar p { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
+  .footer-links a:hover { color: var(--gold); }
+
+  .awards-banner {
+    background: var(--royal);
+    padding: 20px 10%;
+    display: flex; align-items: center; justify-content: center; gap: 60px;
+    overflow: hidden;
+  }
+
+  .award-item { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .award-icon { font-size: 22px; }
+  .award-text { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 0.05em; }
+  .award-text strong { color: var(--white); }
+
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .practice-grid, .testi-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .offices-grid { grid-template-columns: 1fr 1fr; }
+    .about-right { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .nav-links { display: none; }
+    .hero-stats { gap: 32px; }
+    .form-row { grid-template-columns: 1fr; }
+    .awards-banner { gap: 32px; flex-wrap: wrap; }
+  }
+  </style>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <div class="nav-crest">A</div>
+    <div class="nav-crest">E</div>
     <div class="nav-brand">
-      Emeka Onohwakpor and Co
-      <span>Legal Practitioners & Solicitors</span>
+      Emeka Onohwakpor &amp; Co.
+      <span>Thompson Chambers · Legal Practitioners &amp; Notary Public</span>
     </div>
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#team">Our Team</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#offices">Offices</a></li>
     <li><a href="#contact" class="nav-cta">Consultation</a></li>
   </ul>
 </nav>
@@ -36,13 +681,13 @@
     <div class="hero-left">
       <div class="hero-tag">
         <div class="hero-dot"></div>
-        <span>Established 1998 · Lagos, Nigeria</span>
+        <span>Thompson Chambers · Lagos, Nigeria</span>
       </div>
       <h1 class="hero-title">
-        Justice Through<br><em>Excellence</em><br>& Integrity
+        Your One-Stop<br><em>Legal</em><br>Solution
       </h1>
       <p class="hero-sub">
-        Premier legal representation across commercial, civil, and criminal law. We defend your rights with unwavering dedication and decades of courtroom mastery.
+        Young, experienced and dynamic attorneys delivering practical, proactive legal counsel across Nigeria and internationally. We give long-lasting solutions tailored to your peculiar challenges.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Schedule Consultation</a>
@@ -50,16 +695,16 @@
       </div>
       <div class="hero-stats">
         <div>
-          <div class="stat-num">26<span>+</span></div>
+          <div class="stat-num">31<span>+</span></div>
           <div class="stat-label">Years of Practice</div>
         </div>
         <div>
-          <div class="stat-num">3<span>k+</span></div>
-          <div class="stat-label">Cases Handled</div>
+          <div class="stat-num">7<span></span></div>
+          <div class="stat-label">Offices Nationwide</div>
         </div>
         <div>
-          <div class="stat-num">97<span>%</span></div>
-          <div class="stat-label">Success Rate</div>
+          <div class="stat-num">9<span>+</span></div>
+          <div class="stat-label">Specialist Attorneys</div>
         </div>
       </div>
     </div>
@@ -69,32 +714,32 @@
         <div class="practice-item">
           <div class="practice-icon">⚖️</div>
           <div>
-            <div class="practice-name">Corporate & Commercial Law</div>
-            <div class="practice-desc">Mergers, acquisitions & business advisory</div>
+            <div class="practice-name">Litigation &amp; Arbitration</div>
+            <div class="practice-desc">All courts — trial to Supreme Court</div>
           </div>
           <div class="practice-arrow">›</div>
         </div>
         <div class="practice-item">
           <div class="practice-icon">🏛️</div>
           <div>
-            <div class="practice-name">Litigation & Dispute Resolution</div>
-            <div class="practice-desc">Civil & commercial litigation</div>
+            <div class="practice-name">Corporate &amp; Commercial Law</div>
+            <div class="practice-desc">Company formation, M&amp;A &amp; compliance</div>
           </div>
           <div class="practice-arrow">›</div>
         </div>
         <div class="practice-item">
           <div class="practice-icon">🏠</div>
           <div>
-            <div class="practice-name">Real Estate & Property Law</div>
-            <div class="practice-desc">Conveyancing & land matters</div>
+            <div class="practice-name">Real Estate &amp; Property</div>
+            <div class="practice-desc">Conveyancing &amp; title perfection</div>
           </div>
           <div class="practice-arrow">›</div>
         </div>
         <div class="practice-item">
-          <div class="practice-icon">🛡️</div>
+          <div class="practice-icon">💳</div>
           <div>
-            <div class="practice-name">Criminal Defence</div>
-            <div class="practice-desc">Robust defence in all criminal courts</div>
+            <div class="practice-name">Debt Recovery</div>
+            <div class="practice-desc">Banks, institutions &amp; individuals</div>
           </div>
           <div class="practice-arrow">›</div>
         </div>
@@ -106,20 +751,20 @@
 <!-- AWARDS BANNER -->
 <div class="awards-banner">
   <div class="award-item">
-    <div class="award-icon">🏆</div>
-    <div class="award-text"><strong>NBA Excellence Award</strong> 2023</div>
-  </div>
-  <div class="award-item">
-    <div class="award-icon">⭐</div>
-    <div class="award-text"><strong>Top 10 Law Firms</strong> Nigeria 2024</div>
-  </div>
-  <div class="award-item">
     <div class="award-icon">🌍</div>
-    <div class="award-text"><strong>IFLR1000</strong> Ranked Firm</div>
+    <div class="award-text"><strong>International Bar Association</strong> Member Firm</div>
+  </div>
+  <div class="award-item">
+    <div class="award-icon">⚖️</div>
+    <div class="award-text"><strong>Nigerian Bar Association</strong> Licensed</div>
   </div>
   <div class="award-item">
     <div class="award-icon">📋</div>
-    <div class="award-text"><strong>ISO 9001</strong> Certified</div>
+    <div class="award-text"><strong>Notary Public</strong> Certified</div>
+  </div>
+  <div class="award-item">
+    <div class="award-icon">🏙️</div>
+    <div class="award-text"><strong>7 Offices</strong> Across Nigeria</div>
   </div>
 </div>
 
@@ -132,10 +777,10 @@
         <span>Who We Are</span>
       </div>
       <h2 class="section-title">A Legacy of Legal<br>Excellence</h2>
-      <p>Founded in 1998, Emeka Onohwakpor and Co has grown into one of Nigeria's most trusted legal chambers. Our team of seasoned attorneys brings together decades of combined experience across every facet of Nigerian and international law.</p>
-      <p>We believe every client deserves the highest standard of legal counsel — precise, strategic, and deeply human. We don't just practice law; we build lasting relationships grounded in trust and results.</p>
+      <p>Emeka Onohwakpor &amp; Co. (Thompson Chambers) is a firm of young, experienced, multi-talented and vibrant attorneys who take pride in their reputation for excellence, responsiveness and uncompromised professionalism.</p>
+      <p>Our head office is in Lagos with additional offices in Port Harcourt, Abuja, Benin City, Warri, Sapele and Onitsha. We represent our clients throughout Nigeria and internationally through our overseas partners.</p>
       <div class="about-highlight">
-        <p>"The law is not merely a profession to us — it is a calling to serve justice and protect those who need it most."</p>
+        <p>"We advise our clients on what they need to know — not just what they want to hear."</p>
       </div>
     </div>
     <div class="about-right">
@@ -150,14 +795,14 @@
         <div class="value-text">Our reputation is built on honesty, transparency, and ethical practice.</div>
       </div>
       <div class="value-card">
-        <div class="value-icon">💡</div>
-        <div class="value-title">Innovation</div>
-        <div class="value-text">We leverage modern legal tools and forward-thinking strategies.</div>
+        <div class="value-icon">⏱️</div>
+        <div class="value-title">Responsiveness</div>
+        <div class="value-text">We keep in touch, are time-conscious, and tackle problems head-on.</div>
       </div>
       <div class="value-card">
         <div class="value-icon">🌟</div>
         <div class="value-title">Excellence</div>
-        <div class="value-text">We set the highest standards in every brief we accept.</div>
+        <div class="value-text">We set the highest standards and proffer solutions within deadlines.</div>
       </div>
     </div>
   </div>
@@ -173,38 +818,56 @@
   <div class="practice-grid">
     <div class="pa-card">
       <div class="pa-icon">⚖️</div>
-      <div class="pa-title">Corporate & Commercial Law</div>
-      <div class="pa-desc">Comprehensive advisory on mergers, acquisitions, joint ventures, regulatory compliance, and complex commercial transactions for businesses of all sizes.</div>
+      <div class="pa-title">Litigation &amp; Arbitration</div>
+      <div class="pa-desc">We represent clients in all areas of substantive law, from courts of first instance to the Supreme Court throughout Nigeria and overseas through our partners. Special courts and arbitration panels included.</div>
       <a href="#contact" class="pa-link">Enquire →</a>
     </div>
     <div class="pa-card">
       <div class="pa-icon">🏛️</div>
-      <div class="pa-title">Litigation & Arbitration</div>
-      <div class="pa-desc">Aggressive and effective representation before all courts and tribunals. We resolve commercial disputes, enforce contracts, and protect your legal interests.</div>
+      <div class="pa-title">Corporate &amp; Commercial Law</div>
+      <div class="pa-desc">Incorporation of companies, churches, clubs and professional bodies. Trade marks, copyrights, patents, expatriate quotas, mergers, joint ventures and regulatory compliance.</div>
       <a href="#contact" class="pa-link">Enquire →</a>
     </div>
     <div class="pa-card">
       <div class="pa-icon">🏠</div>
-      <div class="pa-title">Real Estate & Property</div>
-      <div class="pa-desc">Full-service real estate law covering conveyancing, land acquisition, development agreements, leases, and title perfection across all Nigerian states.</div>
+      <div class="pa-title">Real Estate &amp; Property</div>
+      <div class="pa-desc">Lease, rental, sale and purchase of land, houses, farms and estates throughout Nigeria and select international markets. We represent developers, individual and institutional investors.</div>
       <a href="#contact" class="pa-link">Enquire →</a>
     </div>
     <div class="pa-card">
-      <div class="pa-icon">🛡️</div>
-      <div class="pa-title">Criminal Defence</div>
-      <div class="pa-desc">Robust criminal defence at all levels of the judiciary. We provide fearless representation for individuals facing all categories of criminal charges.</div>
+      <div class="pa-icon">💳</div>
+      <div class="pa-title">Debt Recovery</div>
+      <div class="pa-desc">Acting on behalf of financial institutions, banks, individuals and licensed money lenders locally and internationally for secured and unsecured loans. We handle restructuring and problematic debts.</div>
       <a href="#contact" class="pa-link">Enquire →</a>
     </div>
     <div class="pa-card">
       <div class="pa-icon">👪</div>
-      <div class="pa-title">Family & Matrimonial Law</div>
-      <div class="pa-desc">Sensitive and experienced handling of divorce, custody, adoption, spousal maintenance, and all family-related legal matters with care and discretion.</div>
+      <div class="pa-title">Family Law &amp; Estates</div>
+      <div class="pa-desc">Divorce, separation, custody, welfare and maintenance. Administration of estates, drafting of Power of Attorney, Trusts, Wills and probate under Nigerian law.</div>
       <a href="#contact" class="pa-link">Enquire →</a>
     </div>
     <div class="pa-card">
-      <div class="pa-icon">📜</div>
-      <div class="pa-title">Wills, Trusts & Probate</div>
-      <div class="pa-desc">Protecting your legacy through expertly drafted wills, trust instruments, estate planning, and administration of deceased estates under Nigerian law.</div>
+      <div class="pa-icon">🛢️</div>
+      <div class="pa-title">Oil &amp; Gas / Maritime</div>
+      <div class="pa-desc">Legal opinions for investors in the oil industry, Joint Venture Agreements and Product Sharing Contracts. Ship registration, mortgages, cargo claims, charter-party disputes and admiralty matters.</div>
+      <a href="#contact" class="pa-link">Enquire →</a>
+    </div>
+    <div class="pa-card">
+      <div class="pa-icon">💻</div>
+      <div class="pa-title">IP &amp; Technology Law</div>
+      <div class="pa-desc">Acquisitions, registration and protection of intellectual property rights, franchising, licensing, trademarks, software procurement, media, communications and entertainment law.</div>
+      <a href="#contact" class="pa-link">Enquire →</a>
+    </div>
+    <div class="pa-card">
+      <div class="pa-icon">📊</div>
+      <div class="pa-title">Taxation</div>
+      <div class="pa-desc">Federal, state and local tax planning, audits and compliance. We counsel foreign companies with Nigerian operations and charitable organisations on tax matters, and assist clients in managing tax exposures.</div>
+      <a href="#contact" class="pa-link">Enquire →</a>
+    </div>
+    <div class="pa-card">
+      <div class="pa-icon">✈️</div>
+      <div class="pa-title">Aviation Law</div>
+      <div class="pa-desc">Aircraft financing, bilateral negotiations and regulatory matters. We advise on cargo, passenger and liability claims under the Warsaw Convention and Montreal Protocol.</div>
       <a href="#contact" class="pa-link">Enquire →</a>
     </div>
   </div>
@@ -218,52 +881,199 @@
   </div>
   <h2 class="section-title">Meet Our Team</h2>
   <div class="team-grid">
+
     <div class="team-card">
       <div class="team-photo">
-        <div class="team-photo-inner">
-          <div class="team-initials">KA</div>
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #0a1628 100%);">
+          <div class="team-initials">EO</div>
         </div>
         <div class="team-overlay"></div>
         <div class="team-info">
-          <div class="team-name">Kunle Adeyemi, SAN</div>
-          <div class="team-role">Founding Partner · Senior Advocate</div>
+          <div class="team-name">Emeka Onohwakpor, Esq.</div>
+          <div class="team-role">Principal Attorney</div>
           <div class="team-bar">
+            <span class="team-tag">Litigation</span>
             <span class="team-tag">Corporate</span>
+            <span class="team-tag">Real Estate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-photo">
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1e52a0 0%, #0a1628 100%);">
+          <div class="team-initials">CE</div>
+        </div>
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name">Chris Ewuzie, Esq.</div>
+          <div class="team-role">Partner</div>
+          <div class="team-bar">
+            <span class="team-tag">Maritime</span>
+            <span class="team-tag">Corporate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-photo">
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #2d7dd2 0%, #0a1628 100%);">
+          <div class="team-initials">DC</div>
+        </div>
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name">Dr. Collins Okpanam, Esq.</div>
+          <div class="team-role">Partner · PhD (IP Law)</div>
+          <div class="team-bar">
+            <span class="team-tag">IP Law</span>
+            <span class="team-tag">Maritime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-photo">
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #060e1c 100%);">
+          <div class="team-initials">CI</div>
+        </div>
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name">Comfort Iwuchukwu, Esq.</div>
+          <div class="team-role">Consultant · FCIS London</div>
+          <div class="team-bar">
+            <span class="team-tag">ADR</span>
+            <span class="team-tag">Commercial</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-photo">
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1e52a0 0%, #060e1c 100%);">
+          <div class="team-initials">SS</div>
+        </div>
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name">Salewa Sobande, Esq.</div>
+          <div class="team-role">Associate</div>
+          <div class="team-bar">
+            <span class="team-tag">Tax Law</span>
+            <span class="team-tag">Research</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-photo">
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #0a1628 100%);">
+          <div class="team-initials">LE</div>
+        </div>
+        <div class="team-overlay"></div>
+        <div class="team-info">
+          <div class="team-name">Lucky Erewa, Esq.</div>
+          <div class="team-role">Associate · Head, Benin Office</div>
+          <div class="team-bar">
+            <span class="team-tag">Debt Recovery</span>
             <span class="team-tag">Litigation</span>
           </div>
         </div>
       </div>
     </div>
+
     <div class="team-card">
       <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #0a1628 100%);">
-          <div class="team-initials">FO</div>
+        <div class="team-photo-inner" style="background: linear-gradient(160deg, #2d7dd2 0%, #060e1c 100%);">
+          <div class="team-initials">OH</div>
         </div>
         <div class="team-overlay"></div>
         <div class="team-info">
-          <div class="team-name">Fatima Okafor, Esq.</div>
-          <div class="team-role">Senior Partner · Head of Litigation</div>
+          <div class="team-name">Onams Harry-Ayerite, Esq.</div>
+          <div class="team-role">Head, Port Harcourt</div>
           <div class="team-bar">
-            <span class="team-tag">Criminal</span>
-            <span class="team-tag">Human Rights</span>
+            <span class="team-tag">Maritime</span>
+            <span class="team-tag">Commercial</span>
           </div>
         </div>
       </div>
     </div>
+
     <div class="team-card">
       <div class="team-photo">
         <div class="team-photo-inner" style="background: linear-gradient(160deg, #1e52a0 0%, #0a1628 100%);">
-          <div class="team-initials">BI</div>
+          <div class="team-initials">AN</div>
         </div>
         <div class="team-overlay"></div>
         <div class="team-info">
-          <div class="team-name">Babatunde Ibrahim, Esq.</div>
-          <div class="team-role">Partner · Real Estate Division</div>
+          <div class="team-name">Alozie Nmerengwa, Esq.</div>
+          <div class="team-role">Head, Abuja Operations</div>
           <div class="team-bar">
-            <span class="team-tag">Property</span>
-            <span class="team-tag">Conveyancing</span>
+            <span class="team-tag">Corporate</span>
+            <span class="team-tag">Mediation</span>
           </div>
         </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- OFFICES -->
+<section class="offices" id="offices">
+  <div class="section-label" style="justify-content:center;">
+    <div class="section-line"></div>
+    <span>Our Locations</span>
+    <div class="section-line"></div>
+  </div>
+  <h2 class="section-title" style="text-align:center;">Offices Across Nigeria</h2>
+  <div class="offices-grid">
+    <div class="office-card">
+      <div class="office-city">🏙️ Lagos</div>
+      <div class="office-contact">
+        <strong>Head Office</strong>
+        20 Adebola Street, Off Adeniran Ogunsanya, Surulere<br>
+        08022903889 · 07041095806<br>
+        emekalaw@yahoo.com
+      </div>
+    </div>
+    <div class="office-card">
+      <div class="office-city">🏛️ Abuja</div>
+      <div class="office-contact">
+        <strong>FCT Office</strong>
+        9 Lumsar Street, Behind Sheraton Hotel, Zone 4<br>
+        08069792352<br>
+        Alozie Nmerengwa, Esq.
+      </div>
+    </div>
+    <div class="office-card">
+      <div class="office-city">🌊 Port Harcourt</div>
+      <div class="office-contact">
+        <strong>Rivers State</strong>
+        50 Wogu Street, D-Line<br>
+        08033144889<br>
+        Onams Harry-Ayerite, Esq.
+      </div>
+    </div>
+    <div class="office-card">
+      <div class="office-city">🏢 Onitsha</div>
+      <div class="office-contact">
+        <strong>Anambra State</strong>
+        5 Old Cemetery Road, Onitsha<br>
+        08058452628<br>
+        Maduka Ewuzie, Esq.
+      </div>
+    </div>
+    <div class="office-card">
+      <div class="office-city">🌿 Sapele</div>
+      <div class="office-contact">
+        <strong>Delta State</strong>
+        2 Adeola Road, Sapele<br>
+        08183042455<br>
+        Odiete Arhierie, Esq.
       </div>
     </div>
   </div>
@@ -280,7 +1090,7 @@
     <div class="testi-card">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Emeka Onohwakpor and Co handled our multi-million naira commercial dispute with exceptional professionalism. Their strategic approach secured a favourable judgement we thought impossible.</div>
+      <div class="testi-text">Emeka Onohwakpor &amp; Co handled our multi-million naira commercial dispute with exceptional professionalism. Their strategic approach secured a favourable judgement we thought impossible.</div>
       <div class="testi-author">
         <div class="testi-avatar">OA</div>
         <div>
@@ -292,7 +1102,7 @@
     <div class="testi-card">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">The team guided us through a complex real estate acquisition involving multiple parties. Their attention to detail saved us from what could have been a catastrophic title dispute.</div>
+      <div class="testi-text">The team guided us through a complex real estate acquisition involving multiple parties. Their attention to title documentation saved us from what could have been a catastrophic dispute.</div>
       <div class="testi-author">
         <div class="testi-avatar">NK</div>
         <div>
@@ -304,12 +1114,12 @@
     <div class="testi-card">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Facing criminal charges was terrifying. Barr.Onohwakpor and his team were relentless in my defence. I cannot thank them enough for their dedication and brilliant advocacy.</div>
+      <div class="testi-text">Their debt recovery team recovered a long-standing sum we had nearly written off. Relentless, professional and result-oriented — exactly what you need from a legal partner.</div>
       <div class="testi-author">
         <div class="testi-avatar">EM</div>
         <div>
           <div class="testi-name">Emmanuel Martins</div>
-          <div class="testi-company">Private Client</div>
+          <div class="testi-company">Director, FinServe Nigeria</div>
         </div>
       </div>
     </div>
@@ -330,15 +1140,15 @@
         <div class="contact-item">
           <div class="contact-icon">📍</div>
           <div>
-            <div class="contact-item-label">Office Address</div>
-            <div class="contact-item-value">20 Adebola Street Surulere Lagos, Nigeria</div>
+            <div class="contact-item-label">Head Office</div>
+            <div class="contact-item-value">20 Adebola Street, Off Adeniran Ogunsanya<br>Surulere, Lagos, Nigeria</div>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">📞</div>
           <div>
             <div class="contact-item-label">Phone</div>
-            <div class="contact-item-value">+234 8022903889</div>
+            <div class="contact-item-value">+234 802 290 3889 · +234 704 109 5806</div>
           </div>
         </div>
         <div class="contact-item">
@@ -381,12 +1191,15 @@
         <label class="form-label">Practice Area</label>
         <select class="form-select">
           <option value="">Select a practice area</option>
-          <option>Corporate & Commercial Law</option>
-          <option>Litigation & Arbitration</option>
-          <option>Real Estate & Property</option>
-          <option>Criminal Defence</option>
-          <option>Family & Matrimonial Law</option>
-          <option>Wills, Trusts & Probate</option>
+          <option>Litigation &amp; Arbitration</option>
+          <option>Corporate &amp; Commercial Law</option>
+          <option>Real Estate &amp; Property</option>
+          <option>Debt Recovery</option>
+          <option>Family Law &amp; Estates</option>
+          <option>Oil &amp; Gas / Maritime</option>
+          <option>IP &amp; Technology Law</option>
+          <option>Taxation</option>
+          <option>Aviation Law</option>
           <option>Other</option>
         </select>
       </div>
@@ -404,23 +1217,23 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="nav-logo">
-        <div class="nav-crest">A</div>
+        <div class="nav-crest">E</div>
         <div class="nav-brand">
-          Emeka Onohwakpor and Co
-          <span>Legal Practitioners & Solicitors</span>
+          Emeka Onohwakpor &amp; Co.
+          <span>Thompson Chambers · Notary Public</span>
         </div>
       </div>
-      <p>Delivering exceptional legal services across Nigeria with integrity, precision, and a deep commitment to justice since 1998.</p>
+      <p>Delivering practical, dynamic and proactive legal advice across Nigeria and internationally since establishment. We are committed to building enduring client relationships grounded in trust and results.</p>
     </div>
     <div class="footer-col">
       <h4>Practice Areas</h4>
       <ul>
+        <li><a href="#">Litigation &amp; Arbitration</a></li>
         <li><a href="#">Corporate Law</a></li>
-        <li><a href="#">Litigation</a></li>
         <li><a href="#">Real Estate</a></li>
-        <li><a href="#">Criminal Defence</a></li>
-        <li><a href="#">Family Law</a></li>
-        <li><a href="#">Probate</a></li>
+        <li><a href="#">Debt Recovery</a></li>
+        <li><a href="#">Oil &amp; Gas</a></li>
+        <li><a href="#">IP &amp; Technology</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -428,8 +1241,8 @@
       <ul>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Our Team</a></li>
+        <li><a href="#">Our Offices</a></li>
         <li><a href="#">Careers</a></li>
-        <li><a href="#">News & Insights</a></li>
         <li><a href="#">Pro Bono</a></li>
       </ul>
     </div>
@@ -445,7 +1258,7 @@
     </div>
   </div>
   <div class="footer-bar">
-    <p>© 2025 Emeka Onohwakpor and Co. All rights reserved. RC No. 1234567. Licensed by the Nigerian Bar Association.</p>
+    <p>© 2025 Emeka Onohwakpor &amp; Co. (Thompson Chambers). All rights reserved. Licensed by the Nigerian Bar Association.</p>
     <div class="footer-links">
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
