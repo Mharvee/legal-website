@@ -5,836 +5,496 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emeka Onohwakpor & Co | Thompson Chambers | Legal Practitioners</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --royal: #1a3a6b;
+  --cobalt: #1e52a0;
+  --sky: #2d7dd2;
+  --ice: #e8f1fc;
+  --white: #ffffff;
+  --off-white: #f5f7fa;
+  --charcoal: #1c1c2e;
+  --mid-grey: #6b7280;
+  --light-grey: #e5e9f0;
+  --gold: #c9a84c;
+  --gold-light: #e8cc82;
+  --gold-dark: #a8832e;
+  --wa-green: #25d366;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--charcoal); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(10,22,40,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+  height: 72px; transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.4); }
+
+.nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.nav-crest {
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); font-weight: 700;
+}
+.nav-brand { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--white); letter-spacing: 0.02em; line-height: 1.2; }
+.nav-brand span { display: block; font-size: 10px; font-family: 'DM Sans', sans-serif; color: var(--gold); letter-spacing: 0.15em; font-weight: 400; text-transform: uppercase; }
+.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-links a { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; font-weight: 400; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.25s; }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy) !important; padding: 10px 22px; border-radius: 2px; font-weight: 600 !important; font-size: 12px !important; letter-spacing: 0.12em !important; }
+.nav-cta:hover { opacity: 0.9; }
+.nav-cta::after { display: none !important; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.mobile-menu {
+  position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+  background: rgba(10,22,40,0.98); padding: 24px 5%;
+  display: flex; flex-direction: column; gap: 8px;
+  transform: translateY(-110%); opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; }
+.mobile-menu a { display: block; padding: 12px 0; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 15px; letter-spacing: 0.06em; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
+.mobile-menu a:last-child { border: none; color: var(--gold); font-weight: 600; }
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ── HERO ── */
+.hero { min-height: 100vh; background: var(--navy); position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(30,82,160,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(30,82,160,0.1) 1px,transparent 1px); background-size: 60px 60px; }
+.hero-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle,rgba(30,82,160,0.3) 0%,transparent 70%); top: -200px; right: -100px; pointer-events: none; animation: glow-pulse 4s ease-in-out infinite; }
+.hero-glow-2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 70%); bottom: 100px; left: 200px; pointer-events: none; animation: glow-pulse 6s ease-in-out infinite reverse; }
+@keyframes glow-pulse { 0%,100%{opacity:0.7} 50%{opacity:1} }
+
+.hero-content {
+  position: relative; z-index: 2; padding: 0 10%; max-width: 1400px; margin: 0 auto; width: 100%;
+  padding-top: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25);
+  padding: 7px 18px; border-radius: 100px; margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.1s both;
+}
+.hero-tag span { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.hero-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px,5vw,68px); font-weight: 700; color: var(--white);
+  line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 24px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.2s both;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif; font-size: 19px;
+  color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 480px; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.3s both;
+}
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease 0.4s both; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy); padding: 14px 32px; border-radius: 2px;
+  font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.3); display: inline-block;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.45); }
+
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.25); color: var(--white);
+  padding: 14px 32px; border-radius: 2px;
+  font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 400; text-decoration: none; transition: all 0.2s; display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-stats { margin-top: 60px; display: flex; gap: 48px; opacity: 0; animation: fadeUp 0.8s ease 0.5s both; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--white); line-height: 1; }
+.stat-num span { color: var(--gold); }
+.stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 6px; }
+.stat-divider { width: 1px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+
+.hero-right { opacity: 0; animation: fadeUp 0.8s ease 0.3s both; }
+.hero-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 36px; backdrop-filter: blur(10px); position: relative; overflow: hidden;
+}
+.hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--sky)); }
+.card-header { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); margin-bottom: 24px; }
+
+.practice-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer; transition: all 0.2s; border-radius: 4px; text-decoration: none;
+}
+.practice-item:last-child { border-bottom: none; }
+.practice-item:hover { padding-left: 8px; }
+.practice-item:hover .practice-arrow { color: var(--gold); transform: translateX(4px); }
+.practice-icon { width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0; background: rgba(30,82,160,0.35); display: flex; align-items: center; justify-content: center; font-size: 20px; transition: background 0.2s; }
+.practice-item:hover .practice-icon { background: rgba(201,168,76,0.2); }
+.practice-name { font-size: 14px; font-weight: 500; color: var(--white); }
+.practice-desc { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.practice-arrow { margin-left: auto; color: rgba(255,255,255,0.25); font-size: 18px; transition: all 0.2s; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── COUNTER ANIMATION ── */
+.count-up { transition: all 0.3s; }
+
+/* ── ABOUT ── */
+.about { padding: 120px 10%; background: var(--off-white); position: relative; }
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.section-label span { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cobalt); font-weight: 500; }
+.section-line { width: 40px; height: 1px; background: var(--gold); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px,4vw,52px); font-weight: 700; color: var(--navy); line-height: 1.1; margin-bottom: 24px; }
+
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-text p { font-family: 'Cormorant Garamond', serif; font-size: 19px; line-height: 1.8; color: #444; margin-bottom: 20px; }
+.about-highlight { background: var(--navy); padding: 24px 28px; border-radius: 4px; margin-top: 32px; border-left: 4px solid var(--gold); }
+.about-highlight p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--white); line-height: 1.5; margin: 0; }
+
+.about-right { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.value-card {
+  background: var(--white); padding: 28px 24px; border-radius: 8px;
+  box-shadow: 0 2px 20px rgba(10,22,40,0.06); border-top: 3px solid transparent;
+  transition: all 0.35s; cursor: default;
+}
+.value-card:hover { border-top-color: var(--gold); transform: translateY(-6px); box-shadow: 0 12px 40px rgba(10,22,40,0.12); }
+.value-icon { font-size: 28px; margin-bottom: 12px; }
+.value-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+.value-text { font-size: 13px; color: var(--mid-grey); line-height: 1.65; }
+
+/* ── PRACTICE AREAS ── */
+.practice { padding: 120px 10%; background: var(--navy); position: relative; overflow: hidden; }
+.practice::before { content: ''; position: absolute; bottom: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle,rgba(30,82,160,0.25) 0%,transparent 70%); }
+.practice .section-title { color: var(--white); }
+.practice .section-label span { color: var(--gold-light); }
+
+.practice-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; margin-top: 60px; }
+
+.pa-card {
+  background: rgba(10,22,40,0.85); padding: 40px 32px;
+  transition: all 0.35s; cursor: default; position: relative; overflow: hidden;
+}
+.pa-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 0; background: linear-gradient(180deg,rgba(30,82,160,0.25) 0%,transparent 100%); transition: height 0.35s; }
+.pa-card:hover::after { height: 100%; }
+.pa-card:hover { background: rgba(26,58,107,0.7); }
+.pa-card:hover .pa-icon { background: var(--gold); color: var(--navy); transform: scale(1.1); }
+
+.pa-icon { width: 52px; height: 52px; background: rgba(30,82,160,0.35); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; transition: all 0.3s; }
+.pa-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--white); margin-bottom: 12px; }
+.pa-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+.pa-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-top: 20px; font-weight: 600;
+  text-decoration: none; transition: gap 0.2s;
+  background: rgba(201,168,76,0.1); padding: 8px 16px; border-radius: 2px;
+  border: 1px solid rgba(201,168,76,0.25); position: relative; z-index: 2;
+}
+.pa-link:hover { gap: 14px; background: rgba(201,168,76,0.2); border-color: var(--gold); }
+
+/* ── TEAM ── */
+.team { padding: 120px 10%; background: var(--white); }
+.team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; margin-top: 60px; }
+.team-card { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 30px rgba(10,22,40,0.1); transition: transform 0.35s, box-shadow 0.35s; }
+.team-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(10,22,40,0.18); }
+.team-photo { width: 100%; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.team-photo-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.team-initials { font-family: 'Playfair Display', serif; font-size: 56px; color: rgba(255,255,255,0.12); font-weight: 700; letter-spacing: -4px; }
+.team-overlay { position: absolute; inset: 0; background: linear-gradient(0deg,rgba(10,22,40,0.95) 0%,transparent 55%); }
+.team-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; }
+.team-name { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--white); font-weight: 600; line-height: 1.2; }
+.team-role { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-top: 4px; line-height: 1.4; }
+.team-bar { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+.team-tag { font-size: 10px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); padding: 3px 8px; border-radius: 100px; }
+
+/* ── OFFICES ── */
+.offices { padding: 100px 10%; background: var(--off-white); }
+.offices .section-title { text-align: center; margin-bottom: 48px; }
+.offices .section-label { justify-content: center; }
+.offices-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 20px; }
+.office-card {
+  background: var(--white); border-radius: 8px; padding: 28px 20px;
+  box-shadow: 0 2px 16px rgba(10,22,40,0.06); border-top: 3px solid var(--gold);
+  text-align: center; transition: all 0.3s; cursor: default;
+}
+.office-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(10,22,40,0.12); }
+.office-city { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); font-weight: 700; margin-bottom: 10px; }
+.office-contact { font-size: 12px; color: var(--mid-grey); line-height: 1.8; }
+.office-contact strong { display: block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 6px; }
+
+/* ── TESTIMONIALS ── */
+.testimonials { padding: 120px 10%; background: var(--ice); }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 60px; }
+.testi-card { background: var(--white); padding: 36px 32px; border-radius: 8px; box-shadow: 0 2px 20px rgba(10,22,40,0.06); position: relative; transition: all 0.3s; }
+.testi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(10,22,40,0.1); }
+.testi-quote { font-family: 'Playfair Display', serif; font-size: 72px; color: var(--gold); opacity: 0.3; position: absolute; top: 16px; left: 28px; line-height: 1; }
+.testi-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.7; color: var(--charcoal); margin-bottom: 24px; padding-top: 20px; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--cobalt), var(--royal)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; color: var(--white); font-size: 16px; flex-shrink: 0; }
+.testi-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+.testi-company { font-size: 12px; color: var(--mid-grey); }
+.testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 4px; letter-spacing: 2px; }
+
+/* ── CONTACT ── */
+.contact { padding: 120px 10%; background: var(--navy); position: relative; overflow: hidden; }
+.contact::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle,rgba(30,82,160,0.2) 0%,transparent 70%); pointer-events: none; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.contact .section-title { color: var(--white); }
+.contact .section-label span { color: var(--gold-light); }
+.contact-intro { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: rgba(255,255,255,0.6); line-height: 1.75; margin-top: 20px; }
+.contact-info { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+.contact-item { display: flex; align-items: flex-start; gap: 16px; }
+.contact-icon { width: 44px; height: 44px; background: rgba(30,82,160,0.35); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s; }
+.contact-item:hover .contact-icon { background: rgba(201,168,76,0.2); }
+.contact-item-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.contact-item-value { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+.contact-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; }
+.form-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); margin-bottom: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 20px; }
+.form-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); display: block; margin-bottom: 8px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px; padding: 12px 16px; color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none;
+  transition: border-color 0.25s, background 0.25s; -webkit-appearance: none;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.08); }
+.form-select option { background: var(--navy); color: var(--white); }
+.form-textarea { resize: vertical; min-height: 110px; }
+.form-submit {
+  width: 100%; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy); padding: 15px; border: none; border-radius: 4px;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  margin-top: 8px; position: relative; overflow: hidden;
+}
+.form-submit:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(201,168,76,0.4); }
+.form-submit:active { transform: translateY(0); }
+
+/* ── WHATSAPP BUTTON ── */
+.wa-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--wa-green); color: #fff; padding: 14px 24px;
+  border-radius: 4px; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-decoration: none; transition: all 0.2s;
+  margin-top: 20px; box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+}
+.wa-btn:hover { background: #1fb855; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.45); }
+.wa-icon { width: 20px; height: 20px; }
+
+/* ── SUCCESS MESSAGE ── */
+.form-success {
+  display: none; text-align: center; padding: 40px 20px;
+}
+.form-success .success-icon { font-size: 56px; margin-bottom: 16px; }
+.form-success h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--white); margin-bottom: 12px; }
+.form-success p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.6; }
+
+/* ── FOOTER ── */
+footer { background: #060e1c; padding: 60px 10% 32px; border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; margin-top: 16px; max-width: 280px; }
+.footer-col h4 { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--white); }
+.footer-bar { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bar p { font-size: 12px; color: rgba(255,255,255,0.25); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ── AWARDS BANNER ── */
+.awards-banner { background: var(--royal); padding: 20px 10%; display: flex; align-items: center; justify-content: center; gap: 60px; overflow: hidden; flex-wrap: wrap; }
+.award-item { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.award-icon { font-size: 22px; }
+.award-text { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.05em; }
+.award-text strong { color: var(--white); }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── CHATBOT ── */
+#chat-fab {
+  position: fixed; bottom: 32px; right: 32px; z-index: 9999;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(201,168,76,0.5);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s; font-size: 26px;
+}
+#chat-fab:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(201,168,76,0.6); }
+#chat-fab .fab-badge { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; border-radius: 50%; background: var(--sky); border: 2px solid var(--white); font-size: 10px; color: var(--white); display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; font-weight: 700; }
+
+#chat-window {
+  position: fixed; bottom: 108px; right: 32px; z-index: 9998;
+  width: 388px; max-height: 590px; background: #0a1628;
+  border: 1px solid rgba(201,168,76,0.2); border-radius: 16px;
+  display: flex; flex-direction: column;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+  overflow: hidden; transform: scale(0.92) translateY(16px);
+  opacity: 0; pointer-events: none; transform-origin: bottom right;
+  transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s ease;
+}
+#chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+#chat-header { padding: 18px 20px 14px; background: rgba(26,58,107,0.9); border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+#chat-header-icon { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-light)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+#chat-header-text { flex: 1; }
+#chat-header-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 15px; color: var(--white); font-weight: 600; }
+#chat-header-text span { font-size: 11px; color: rgba(255,255,255,0.4); font-family: 'DM Sans', sans-serif; }
+.chat-online { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--wa-green); margin-right: 5px; animation: pulse 2s infinite; }
+#chat-close { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.35); font-size: 20px; line-height: 1; padding: 4px; transition: color 0.2s; }
+#chat-close:hover { color: var(--white); }
+#chat-messages { flex: 1; overflow-y: auto; padding: 20px 16px 8px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
+#chat-messages::-webkit-scrollbar { width: 4px; }
+#chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+.msg { max-width: 88%; display: flex; flex-direction: column; gap: 4px; }
+.msg.bot { align-self: flex-start; }
+.msg.user { align-self: flex-end; }
+.msg-bubble { padding: 10px 14px; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 13.5px; line-height: 1.6; }
+.bot .msg-bubble { background: rgba(30,82,160,0.3); border: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); border-radius: 4px 12px 12px 12px; }
+.user .msg-bubble { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); font-weight: 500; border-radius: 12px 4px 12px 12px; }
+.msg-time { font-size: 10px; color: rgba(255,255,255,0.2); }
+.user .msg-time { text-align: right; }
+.typing-indicator { display: flex; gap: 5px; padding: 4px 2px; align-items: center; }
+.typing-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(201,168,76,0.55); animation: typingBounce 1.2s infinite ease-in-out; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce { 0%,80%,100%{transform:translateY(0);opacity:0.5} 40%{transform:translateY(-6px);opacity:1} }
+#chat-suggestions { padding: 0 16px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
+.suggestion-chip { font-size: 11px; padding: 5px 11px; border-radius: 100px; border: 1px solid rgba(201,168,76,0.3); color: rgba(201,168,76,0.8); background: rgba(201,168,76,0.06); cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; white-space: nowrap; }
+.suggestion-chip:hover { background: rgba(201,168,76,0.16); border-color: rgba(201,168,76,0.55); }
+#chat-input-area { padding: 12px 16px 16px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
+#chat-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; resize: none; min-height: 40px; max-height: 100px; transition: border-color 0.2s; line-height: 1.5; }
+#chat-input::placeholder { color: rgba(255,255,255,0.2); }
+#chat-input:focus { border-color: rgba(201,168,76,0.45); }
+#chat-send { width: 38px; height: 38px; border-radius: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--navy); transition: opacity 0.2s, transform 0.15s; }
+#chat-send:hover { opacity: 0.9; transform: scale(1.05); }
+#chat-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+#chat-disclaimer { padding: 6px 16px 12px; text-align: center; font-size: 10px; color: rgba(255,255,255,0.18); font-family: 'DM Sans', sans-serif; line-height: 1.5; flex-shrink: 0; }
+
+/* ── BACK TO TOP ── */
+#back-top {
+  position: fixed; bottom: 108px; right: 32px; z-index: 998;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(10,22,40,0.9); border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold); font-size: 18px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+#back-top.visible { opacity: 1; pointer-events: all; }
+#back-top:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
+
+/* ── PROGRESS BAR ── */
+#progress-bar { position: fixed; top: 72px; left: 0; z-index: 99; height: 2px; background: linear-gradient(90deg, var(--gold), var(--sky)); width: 0%; transition: width 0.1s; }
+
+/* ── MODAL ── */
+.modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: var(--navy); border: 1px solid rgba(201,168,76,0.25); border-radius: 12px; padding: 48px; max-width: 520px; width: 90%; position: relative; transform: translateY(20px) scale(0.97); transition: all 0.3s; }
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+.modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; color: rgba(255,255,255,0.4); cursor: pointer; transition: color 0.2s; line-height: 1; }
+.modal-close:hover { color: var(--white); }
+.modal-icon { font-size: 48px; margin-bottom: 16px; }
+.modal h3 { font-family: 'Playfair Display', serif; font-size: 26px; color: var(--white); margin-bottom: 12px; }
+.modal p { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 32px; }
+.modal-area { font-weight: 600; color: var(--gold); }
+.modal-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+  .offices-grid { grid-template-columns: repeat(3,1fr); }
+  .practice-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .offices-grid { grid-template-columns: repeat(2,1fr); }
+  .about-right { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-stats { gap: 28px; }
+  .form-row { grid-template-columns: 1fr; }
+  .awards-banner { gap: 28px; }
+}
+@media (max-width: 600px) {
+  .practice-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .offices-grid { grid-template-columns: 1fr 1fr; }
+  .about-right { grid-template-columns: 1fr; }
+  #chat-window { width: calc(100vw - 24px); right: 12px; bottom: 92px; }
+  #chat-fab { bottom: 20px; right: 16px; }
+  #back-top { display: none; }
+}
+</style>
 </head>
 <body>
-  <style>
-    
-  :root {
-    --navy: #0a1628;
-    --royal: #1a3a6b;
-    --cobalt: #1e52a0;
-    --sky: #2d7dd2;
-    --ice: #e8f1fc;
-    --white: #ffffff;
-    --off-white: #f5f7fa;
-    --charcoal: #1c1c2e;
-    --mid-grey: #6b7280;
-    --light-grey: #e5e9f0;
-    --gold: #c9a84c;
-    --gold-light: #e8cc82;
-  }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--charcoal);
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(10, 22, 40, 0.97);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(201,168,76,0.25);
-    padding: 0 5%;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 72px;
-  }
-
-  .nav-logo {
-    display: flex; align-items: center; gap: 14px;
-  }
-
-  .nav-crest {
-    width: 42px; height: 42px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; color: var(--navy); font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .nav-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px; font-weight: 600;
-    color: var(--white); letter-spacing: 0.02em; line-height: 1.2;
-  }
-
-  .nav-brand span { display: block; font-size: 10px; font-family: 'DM Sans', sans-serif;
-    color: var(--gold); letter-spacing: 0.15em; font-weight: 400; text-transform: uppercase; }
-
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-
-  .nav-links a {
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 400;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--gold); }
-
-  .nav-cta {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--navy) !important;
-    padding: 10px 22px; border-radius: 2px;
-    font-weight: 500 !important; font-size: 12px !important;
-    letter-spacing: 0.1em !important;
-  }
-
-  .nav-cta:hover { opacity: 0.9; color: var(--navy) !important; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    position: relative;
-    display: flex; align-items: center;
-    overflow: hidden;
-  }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(30,82,160,0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(30,82,160,0.12) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(30,82,160,0.35) 0%, transparent 70%);
-    top: -200px; right: -100px; pointer-events: none;
-  }
-
-  .hero-glow-2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
-    bottom: 100px; left: 200px; pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative; z-index: 2;
-    padding: 0 10%; max-width: 1400px; margin: 0 auto; width: 100%;
-    padding-top: 80px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(201,168,76,0.12);
-    border: 1px solid rgba(201,168,76,0.3);
-    padding: 7px 18px; border-radius: 100px;
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .hero-tag span {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); font-weight: 500;
-  }
-
-  .hero-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
-
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 5vw, 68px);
-    font-weight: 700; color: var(--white);
-    line-height: 1.1; letter-spacing: -0.01em;
-    margin-bottom: 24px;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-
-  .hero-title em { font-style: italic; color: var(--gold); }
-
-  .hero-sub {
-    font-size: 16px; color: rgba(255,255,255,0.6);
-    line-height: 1.75; max-width: 480px; margin-bottom: 44px;
-    font-family: 'Cormorant Garamond', serif; font-size: 19px;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--navy); padding: 14px 32px; border-radius: 2px;
-    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-    font-weight: 600; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(201,168,76,0.3);
-  }
-
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
-
-  .btn-outline {
-    border: 1px solid rgba(255,255,255,0.3); color: var(--white);
-    padding: 14px 32px; border-radius: 2px;
-    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-    font-weight: 400; text-decoration: none; transition: all 0.2s;
-  }
-
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  .hero-stats {
-    margin-top: 60px; display: flex; gap: 48px;
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 38px; font-weight: 700; color: var(--white); line-height: 1;
-  }
-
-  .stat-num span { color: var(--gold); }
-
-  .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.45); margin-top: 6px; }
-
-  .hero-right { animation: fadeUp 0.8s 0.2s ease both; }
-
-  .hero-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; padding: 36px;
-    backdrop-filter: blur(10px);
-    position: relative; overflow: hidden;
-  }
-
-  .hero-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--sky));
-  }
-
-  .card-header {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; color: var(--white); margin-bottom: 24px;
-  }
-
-  .practice-item {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-    cursor: pointer; transition: all 0.2s;
-  }
-
-  .practice-item:last-child { border-bottom: none; }
-  .practice-item:hover .practice-arrow { color: var(--gold); transform: translateX(4px); }
-
-  .practice-icon {
-    width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
-    background: rgba(30,82,160,0.4); display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-  }
-
-  .practice-name { font-size: 14px; font-weight: 500; color: var(--white); }
-  .practice-desc { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
-  .practice-arrow { margin-left: auto; color: rgba(255,255,255,0.3); font-size: 18px; transition: all 0.2s; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── ABOUT ── */
-  .about {
-    padding: 120px 10%;
-    background: var(--off-white);
-    position: relative;
-  }
-
-  .section-label {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
-  }
-
-  .section-label span {
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--cobalt); font-weight: 500;
-  }
-
-  .section-line { width: 40px; height: 1px; background: var(--gold); }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 52px); font-weight: 700;
-    color: var(--navy); line-height: 1.1; margin-bottom: 24px;
-  }
-
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-
-  .about-text p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px; line-height: 1.8; color: #444; margin-bottom: 20px;
-  }
-
-  .about-highlight {
-    background: var(--navy);
-    padding: 24px 28px; border-radius: 4px; margin-top: 32px;
-    border-left: 4px solid var(--gold);
-  }
-
-  .about-highlight p {
-    font-family: 'Playfair Display', serif;
-    font-style: italic; font-size: 20px; color: var(--white);
-    line-height: 1.5; margin: 0;
-  }
-
-  .about-right { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-  .value-card {
-    background: var(--white);
-    padding: 28px 24px; border-radius: 8px;
-    box-shadow: 0 2px 20px rgba(10,22,40,0.07);
-    border-top: 3px solid transparent;
-    transition: all 0.3s;
-  }
-
-  .value-card:hover { border-top-color: var(--gold); transform: translateY(-4px); }
-
-  .value-icon { font-size: 28px; margin-bottom: 12px; }
-  .value-title { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); margin-bottom: 8px; }
-  .value-text { font-size: 13px; color: var(--mid-grey); line-height: 1.65; }
-
-  /* ── PRACTICE AREAS ── */
-  .practice {
-    padding: 120px 10%;
-    background: var(--navy);
-    position: relative; overflow: hidden;
-  }
-
-  .practice::before {
-    content: '';
-    position: absolute; bottom: -100px; right: -100px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(30,82,160,0.3) 0%, transparent 70%);
-  }
-
-  .practice .section-title { color: var(--white); }
-  .practice .section-label span { color: var(--gold-light); }
-
-  .practice-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px; overflow: hidden; margin-top: 60px;
-  }
-
-  .pa-card {
-    background: rgba(10,22,40,0.8);
-    padding: 40px 32px;
-    transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
-  }
-
-  .pa-card::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 0;
-    background: linear-gradient(180deg, rgba(30,82,160,0.3) 0%, rgba(30,82,160,0.0) 100%);
-    transition: height 0.3s;
-  }
-
-  .pa-card:hover::after { height: 100%; }
-  .pa-card:hover .pa-icon { background: var(--gold); color: var(--navy); }
-
-  .pa-icon {
-    width: 52px; height: 52px; background: rgba(30,82,160,0.4);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-size: 22px; margin-bottom: 20px; transition: all 0.3s;
-  }
-
-  .pa-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; color: var(--white); margin-bottom: 12px;
-  }
-
-  .pa-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; }
-
-  .pa-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gold); margin-top: 20px; font-weight: 500;
-    text-decoration: none; transition: gap 0.2s;
-  }
-
-  .pa-link:hover { gap: 14px; }
-
-  /* ── TEAM ── */
-  .team {
-    padding: 120px 10%;
-    background: var(--white);
-  }
-
-  .team-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 60px;
-  }
-
-  .team-card {
-    position: relative; overflow: hidden; border-radius: 8px;
-    box-shadow: 0 4px 30px rgba(10,22,40,0.1);
-    transition: transform 0.3s;
-  }
-
-  .team-card:hover { transform: translateY(-6px); }
-
-  .team-photo {
-    width: 100%; aspect-ratio: 3/4;
-    background: var(--royal);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-
-  .team-photo-inner {
-    width: 100%; height: 100%;
-    background: linear-gradient(160deg, var(--royal) 0%, var(--navy) 100%);
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .team-initials {
-    font-family: 'Playfair Display', serif;
-    font-size: 56px; color: rgba(255,255,255,0.15); font-weight: 700;
-    letter-spacing: -4px;
-  }
-
-  .team-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(10,22,40,0.95) 0%, transparent 50%);
-  }
-
-  .team-info {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 20px;
-  }
-
-  .team-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px; color: var(--white); font-weight: 600; line-height: 1.2;
-  }
-
-  .team-role { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--gold); margin-top: 4px; line-height: 1.4; }
-
-  .team-bar {
-    display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap;
-  }
-
-  .team-tag {
-    font-size: 10px; background: rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.7); padding: 3px 8px; border-radius: 100px;
-  }
-
-  /* ── OFFICES ── */
-  .offices {
-    padding: 80px 10%;
-    background: var(--off-white);
-  }
-
-  .offices .section-title { text-align: center; margin-bottom: 48px; }
-  .offices .section-label { justify-content: center; }
-
-  .offices-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
-  }
-
-  .office-card {
-    background: var(--white);
-    border-radius: 8px; padding: 24px 20px;
-    box-shadow: 0 2px 16px rgba(10,22,40,0.07);
-    border-top: 3px solid var(--gold);
-    text-align: center;
-  }
-
-  .office-city {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; color: var(--navy); font-weight: 700; margin-bottom: 8px;
-  }
-
-  .office-contact { font-size: 12px; color: var(--mid-grey); line-height: 1.8; }
-  .office-contact strong { display: block; font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--cobalt); margin-bottom: 6px; }
-
-  /* ── TESTIMONIALS ── */
-  .testimonials {
-    padding: 120px 10%;
-    background: var(--ice);
-  }
-
-  .testi-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 60px;
-  }
-
-  .testi-card {
-    background: var(--white);
-    padding: 36px 32px; border-radius: 8px;
-    box-shadow: 0 2px 20px rgba(10,22,40,0.06);
-    position: relative;
-  }
-
-  .testi-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 72px; color: var(--gold); opacity: 0.3;
-    position: absolute; top: 16px; left: 28px; line-height: 1;
-  }
-
-  .testi-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px; line-height: 1.7; color: var(--charcoal);
-    margin-bottom: 24px; padding-top: 20px;
-  }
-
-  .testi-author { display: flex; align-items: center; gap: 14px; }
-
-  .testi-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--cobalt), var(--royal));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif; color: var(--white); font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .testi-name { font-size: 14px; font-weight: 600; color: var(--navy); }
-  .testi-company { font-size: 12px; color: var(--mid-grey); }
-  .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 4px; }
-
-  /* ── CONTACT ── */
-  .contact {
-    padding: 120px 10%;
-    background: var(--navy);
-    position: relative; overflow: hidden;
-  }
-
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
-  }
-
-  .contact .section-title { color: var(--white); }
-  .contact .section-label span { color: var(--gold-light); }
-
-  .contact-intro {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px; color: rgba(255,255,255,0.6); line-height: 1.75;
-    margin-top: 20px;
-  }
-
-  .contact-info { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
-
-  .contact-item { display: flex; align-items: flex-start; gap: 16px; }
-
-  .contact-icon {
-    width: 44px; height: 44px; background: rgba(30,82,160,0.4);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-
-  .contact-item-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 4px; }
-  .contact-item-value { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; }
-
-  .contact-form {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px; padding: 40px;
-  }
-
-  .form-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px; color: var(--white); margin-bottom: 28px;
-  }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  .form-group { margin-bottom: 20px; }
-
-  .form-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.5); display: block; margin-bottom: 8px; }
-
-  .form-input, .form-select, .form-textarea {
-    width: 100%; background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 4px; padding: 12px 16px;
-    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px;
-    outline: none; transition: border-color 0.2s;
-    -webkit-appearance: none;
-  }
-
-  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
-  .form-select option { background: var(--navy); color: var(--white); }
-  .form-textarea { resize: vertical; min-height: 110px; }
-
-  .form-submit {
-    width: 100%;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--navy); padding: 14px;
-    border: none; border-radius: 4px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
-    font-weight: 600; cursor: pointer; transition: all 0.2s;
-    margin-top: 8px;
-  }
-
-  .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
-
-  footer {
-    background: #060e1c;
-    padding: 60px 10% 32px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
-    margin-bottom: 48px;
-  }
-
-  .footer-brand p {
-    font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7;
-    margin-top: 16px; max-width: 280px;
-  }
-
-  .footer-col h4 {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 20px;
-  }
-
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .footer-col ul li a {
-    font-size: 13px; color: rgba(255,255,255,0.45);
-    text-decoration: none; transition: color 0.2s;
-  }
-
-  .footer-col ul li a:hover { color: var(--white); }
-
-  .footer-bar {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding-top: 28px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-
-  .footer-bar p { font-size: 12px; color: rgba(255,255,255,0.3); }
-
-  .footer-links { display: flex; gap: 24px; }
-  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; }
-  .footer-links a:hover { color: var(--gold); }
-
-  .awards-banner {
-    background: var(--royal);
-    padding: 20px 10%;
-    display: flex; align-items: center; justify-content: center; gap: 60px;
-    overflow: hidden;
-  }
-
-  .award-item { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-  .award-icon { font-size: 22px; }
-  .award-text { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 0.05em; }
-  .award-text strong { color: var(--white); }
-
-  @media (max-width: 900px) {
-    .hero-content { grid-template-columns: 1fr; gap: 40px; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    .practice-grid, .testi-grid { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr 1fr; }
-    .offices-grid { grid-template-columns: 1fr 1fr; }
-    .about-right { grid-template-columns: 1fr 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .nav-links { display: none; }
-    .hero-stats { gap: 32px; }
-    .form-row { grid-template-columns: 1fr; }
-    .awards-banner { gap: 32px; flex-wrap: wrap; }
-  }
-
-  /* ── CHATBOT ── */
-  #chat-fab {
-    position: fixed; bottom: 32px; right: 32px; z-index: 9999;
-    width: 60px; height: 60px; border-radius: 50%;
-    background: linear-gradient(135deg, #c9a84c, #e8cc82);
-    border: none; cursor: pointer;
-    box-shadow: 0 4px 24px rgba(201,168,76,0.45);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    font-size: 26px;
-  }
-  #chat-fab:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(201,168,76,0.55); }
-  #chat-fab .fab-badge {
-    position: absolute; top: -4px; right: -4px;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: #2d7dd2; border: 2px solid #fff;
-    font-size: 10px; color: #fff; display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Sans', sans-serif; font-weight: 600;
-  }
-
-  #chat-window {
-    position: fixed; bottom: 104px; right: 32px; z-index: 9998;
-    width: 380px; max-height: 580px;
-    background: #0a1628;
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 16px;
-    display: flex; flex-direction: column;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-    overflow: hidden;
-    transform: scale(0.92) translateY(16px);
-    opacity: 0; pointer-events: none;
-    transform-origin: bottom right;
-    transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), opacity 0.18s ease;
-  }
-  #chat-window.open {
-    transform: scale(1) translateY(0);
-    opacity: 1; pointer-events: all;
-  }
-
-  #chat-header {
-    padding: 18px 20px 14px;
-    background: rgba(26,58,107,0.9);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    display: flex; align-items: center; gap: 12px;
-    flex-shrink: 0;
-  }
-  #chat-header-icon {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: linear-gradient(135deg, #c9a84c, #e8cc82);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-  }
-  #chat-header-text { flex: 1; }
-  #chat-header-text strong {
-    display: block; font-family: 'Playfair Display', serif;
-    font-size: 15px; color: #fff; font-weight: 600;
-  }
-  #chat-header-text span {
-    font-size: 11px; color: rgba(255,255,255,0.45);
-    font-family: 'DM Sans', sans-serif;
-  }
-  #chat-close {
-    background: none; border: none; cursor: pointer;
-    color: rgba(255,255,255,0.4); font-size: 20px;
-    line-height: 1; padding: 4px; transition: color 0.2s;
-  }
-  #chat-close:hover { color: #fff; }
-
-  #chat-messages {
-    flex: 1; overflow-y: auto; padding: 20px 16px 8px;
-    display: flex; flex-direction: column; gap: 12px;
-    scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
-  }
-  #chat-messages::-webkit-scrollbar { width: 4px; }
-  #chat-messages::-webkit-scrollbar-track { background: transparent; }
-  #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
-
-  .msg { max-width: 88%; display: flex; flex-direction: column; gap: 4px; }
-  .msg.bot { align-self: flex-start; }
-  .msg.user { align-self: flex-end; }
-  .msg-bubble {
-    padding: 10px 14px; border-radius: 12px;
-    font-family: 'DM Sans', sans-serif; font-size: 13.5px; line-height: 1.6;
-  }
-  .bot .msg-bubble {
-    background: rgba(30,82,160,0.35);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.88);
-    border-radius: 4px 12px 12px 12px;
-  }
-  .user .msg-bubble {
-    background: linear-gradient(135deg, #c9a84c, #e8cc82);
-    color: #0a1628; font-weight: 500;
-    border-radius: 12px 4px 12px 12px;
-  }
-  .msg-time { font-size: 10px; color: rgba(255,255,255,0.25); font-family: 'DM Sans', sans-serif; }
-  .user .msg-time { text-align: right; }
-
-  .typing-indicator { display: flex; gap: 5px; padding: 4px 2px; align-items: center; }
-  .typing-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(201,168,76,0.6);
-    animation: typingBounce 1.2s infinite ease-in-out;
-  }
-  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typingBounce {
-    0%,80%,100% { transform: translateY(0); opacity: 0.5; }
-    40% { transform: translateY(-6px); opacity: 1; }
-  }
-
-  #chat-suggestions {
-    padding: 0 16px 10px;
-    display: flex; flex-wrap: wrap; gap: 6px;
-    flex-shrink: 0;
-  }
-  .suggestion-chip {
-    font-size: 11px; padding: 5px 11px; border-radius: 100px;
-    border: 1px solid rgba(201,168,76,0.35); color: rgba(201,168,76,0.85);
-    background: rgba(201,168,76,0.07); cursor: pointer;
-    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .suggestion-chip:hover { background: rgba(201,168,76,0.18); border-color: rgba(201,168,76,0.6); }
-
-  #chat-input-area {
-    padding: 12px 16px 16px;
-    border-top: 1px solid rgba(255,255,255,0.07);
-    display: flex; gap: 8px; align-items: flex-end;
-    flex-shrink: 0;
-  }
-  #chat-input {
-    flex: 1; background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px; padding: 10px 14px;
-    color: #fff; font-family: 'DM Sans', sans-serif; font-size: 13px;
-    outline: none; resize: none; min-height: 40px; max-height: 100px;
-    transition: border-color 0.2s; line-height: 1.5;
-  }
-  #chat-input::placeholder { color: rgba(255,255,255,0.25); }
-  #chat-input:focus { border-color: rgba(201,168,76,0.5); }
-
-  #chat-send {
-    width: 38px; height: 38px; border-radius: 8px;
-    background: linear-gradient(135deg, #c9a84c, #e8cc82);
-    border: none; cursor: pointer; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; color: #0a1628;
-    transition: opacity 0.2s, transform 0.15s;
-  }
-  #chat-send:hover { opacity: 0.9; transform: scale(1.05); }
-  #chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-  #chat-disclaimer {
-    padding: 6px 16px 12px; text-align: center;
-    font-size: 10px; color: rgba(255,255,255,0.22);
-    font-family: 'DM Sans', sans-serif; line-height: 1.5; flex-shrink: 0;
-  }
-
-  @media (max-width: 480px) {
-    #chat-window { width: calc(100vw - 24px); right: 12px; bottom: 88px; }
-    #chat-fab { bottom: 20px; right: 16px; }
-  }
-  </style>
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
     <div class="nav-crest">E</div>
     <div class="nav-brand">
       Emeka Onohwakpor &amp; Co.
       <span>Thompson Chambers · Legal Practitioners &amp; Notary Public</span>
     </div>
-  </div>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#practice">Practice Areas</a></li>
     <li><a href="#team">Our Team</a></li>
     <li><a href="#offices">Offices</a></li>
-    <li><a href="#contact" class="nav-cta">Consultation</a></li>
+    <li><a href="#contact" class="nav-cta">Book Consultation</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#practice" onclick="closeMenu()">Practice Areas</a>
+  <a href="#team" onclick="closeMenu()">Our Team</a>
+  <a href="#offices" onclick="closeMenu()">Offices</a>
+  <a href="#contact" onclick="closeMenu()">Book Consultation →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -847,27 +507,25 @@
         <div class="hero-dot"></div>
         <span>Thompson Chambers · Lagos, Nigeria</span>
       </div>
-      <h1 class="hero-title">
-        Your One-Stop<br><em>Legal</em><br>Solution
-      </h1>
-      <p class="hero-sub">
-        Young, experienced and dynamic attorneys delivering practical, proactive legal counsel across Nigeria and internationally. We give long-lasting solutions tailored to your peculiar challenges.
-      </p>
+      <h1 class="hero-title">Your One-Stop<br><em>Legal</em><br>Solution</h1>
+      <p class="hero-sub">Young, experienced and dynamic attorneys delivering practical, proactive legal counsel across Nigeria and internationally. We give long-lasting solutions tailored to your peculiar challenges.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">Schedule Consultation</a>
         <a href="#practice" class="btn-outline">Our Practice Areas</a>
       </div>
       <div class="hero-stats">
         <div>
-          <div class="stat-num">31<span>+</span></div>
+          <div class="stat-num"><span class="count-up" data-target="31">0</span><span>+</span></div>
           <div class="stat-label">Years of Practice</div>
         </div>
+        <div class="stat-divider"></div>
         <div>
-          <div class="stat-num">7<span></span></div>
+          <div class="stat-num"><span class="count-up" data-target="7">0</span></div>
           <div class="stat-label">Offices Nationwide</div>
         </div>
+        <div class="stat-divider"></div>
         <div>
-          <div class="stat-num">9<span>+</span></div>
+          <div class="stat-num"><span class="count-up" data-target="9">0</span><span>+</span></div>
           <div class="stat-label">Specialist Attorneys</div>
         </div>
       </div>
@@ -875,38 +533,26 @@
     <div class="hero-right">
       <div class="hero-card">
         <h3 class="card-header">Core Practice Areas</h3>
-        <div class="practice-item">
+        <a href="javascript:void(0)" onclick="openModal('Litigation & Arbitration','⚖️')" class="practice-item">
           <div class="practice-icon">⚖️</div>
-          <div>
-            <div class="practice-name">Litigation &amp; Arbitration</div>
-            <div class="practice-desc">All courts — trial to Supreme Court</div>
-          </div>
+          <div><div class="practice-name">Litigation &amp; Arbitration</div><div class="practice-desc">All courts — trial to Supreme Court</div></div>
           <div class="practice-arrow">›</div>
-        </div>
-        <div class="practice-item">
+        </a>
+        <a href="javascript:void(0)" onclick="openModal('Corporate & Commercial Law','🏛️')" class="practice-item">
           <div class="practice-icon">🏛️</div>
-          <div>
-            <div class="practice-name">Corporate &amp; Commercial Law</div>
-            <div class="practice-desc">Company formation, M&amp;A &amp; compliance</div>
-          </div>
+          <div><div class="practice-name">Corporate &amp; Commercial Law</div><div class="practice-desc">Company formation, M&amp;A &amp; compliance</div></div>
           <div class="practice-arrow">›</div>
-        </div>
-        <div class="practice-item">
+        </a>
+        <a href="javascript:void(0)" onclick="openModal('Real Estate & Property','🏠')" class="practice-item">
           <div class="practice-icon">🏠</div>
-          <div>
-            <div class="practice-name">Real Estate &amp; Property</div>
-            <div class="practice-desc">Conveyancing &amp; title perfection</div>
-          </div>
+          <div><div class="practice-name">Real Estate &amp; Property</div><div class="practice-desc">Conveyancing &amp; title perfection</div></div>
           <div class="practice-arrow">›</div>
-        </div>
-        <div class="practice-item">
+        </a>
+        <a href="javascript:void(0)" onclick="openModal('Debt Recovery','💳')" class="practice-item">
           <div class="practice-icon">💳</div>
-          <div>
-            <div class="practice-name">Debt Recovery</div>
-            <div class="practice-desc">Banks, institutions &amp; individuals</div>
-          </div>
+          <div><div class="practice-name">Debt Recovery</div><div class="practice-desc">Banks, institutions &amp; individuals</div></div>
           <div class="practice-arrow">›</div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
@@ -914,32 +560,17 @@
 
 <!-- AWARDS BANNER -->
 <div class="awards-banner">
-  <div class="award-item">
-    <div class="award-icon">🌍</div>
-    <div class="award-text"><strong>International Bar Association</strong> Member Firm</div>
-  </div>
-  <div class="award-item">
-    <div class="award-icon">⚖️</div>
-    <div class="award-text"><strong>Nigerian Bar Association</strong> Licensed</div>
-  </div>
-  <div class="award-item">
-    <div class="award-icon">📋</div>
-    <div class="award-text"><strong>Notary Public</strong> Certified</div>
-  </div>
-  <div class="award-item">
-    <div class="award-icon">🏙️</div>
-    <div class="award-text"><strong>7 Offices</strong> Across Nigeria</div>
-  </div>
+  <div class="award-item"><div class="award-icon">🌍</div><div class="award-text"><strong>International Bar Association</strong> Member Firm</div></div>
+  <div class="award-item"><div class="award-icon">⚖️</div><div class="award-text"><strong>Nigerian Bar Association</strong> Licensed</div></div>
+  <div class="award-item"><div class="award-icon">📋</div><div class="award-text"><strong>Notary Public</strong> Certified</div></div>
+  <div class="award-item"><div class="award-icon">🏙️</div><div class="award-text"><strong>7 Offices</strong> Across Nigeria</div></div>
 </div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-grid">
-    <div class="about-text">
-      <div class="section-label">
-        <div class="section-line"></div>
-        <span>Who We Are</span>
-      </div>
+    <div class="about-text reveal">
+      <div class="section-label"><div class="section-line"></div><span>Who We Are</span></div>
       <h2 class="section-title">A Legacy of Legal<br>Excellence</h2>
       <p>Emeka Onohwakpor &amp; Co. (Thompson Chambers) is a firm of young, experienced, multi-talented and vibrant attorneys who take pride in their reputation for excellence, responsiveness and uncompromised professionalism.</p>
       <p>Our head office is in Lagos with additional offices in Port Harcourt, Abuja, Benin City, Warri, Sapele and Onitsha. We represent our clients throughout Nigeria and internationally through our overseas partners.</p>
@@ -948,22 +579,22 @@
       </div>
     </div>
     <div class="about-right">
-      <div class="value-card">
+      <div class="value-card reveal reveal-delay-1">
         <div class="value-icon">🎯</div>
         <div class="value-title">Precision</div>
         <div class="value-text">Every case is meticulously researched and argued with strategic clarity.</div>
       </div>
-      <div class="value-card">
+      <div class="value-card reveal reveal-delay-2">
         <div class="value-icon">🤝</div>
         <div class="value-title">Integrity</div>
         <div class="value-text">Our reputation is built on honesty, transparency, and ethical practice.</div>
       </div>
-      <div class="value-card">
+      <div class="value-card reveal reveal-delay-3">
         <div class="value-icon">⏱️</div>
         <div class="value-title">Responsiveness</div>
         <div class="value-text">We keep in touch, are time-conscious, and tackle problems head-on.</div>
       </div>
-      <div class="value-card">
+      <div class="value-card reveal reveal-delay-4">
         <div class="value-icon">🌟</div>
         <div class="value-title">Excellence</div>
         <div class="value-text">We set the highest standards and proffer solutions within deadlines.</div>
@@ -974,219 +605,106 @@
 
 <!-- PRACTICE AREAS -->
 <section class="practice" id="practice">
-  <div class="section-label">
-    <div class="section-line"></div>
-    <span>What We Do</span>
-  </div>
-  <h2 class="section-title">Practice Areas</h2>
+  <div class="section-label reveal"><div class="section-line"></div><span>What We Do</span></div>
+  <h2 class="section-title reveal">Practice Areas</h2>
   <div class="practice-grid">
-    <div class="pa-card">
+    <div class="pa-card reveal">
       <div class="pa-icon">⚖️</div>
       <div class="pa-title">Litigation &amp; Arbitration</div>
       <div class="pa-desc">We represent clients in all areas of substantive law, from courts of first instance to the Supreme Court throughout Nigeria and overseas through our partners. Special courts and arbitration panels included.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Litigation%20%26%20Arbitration%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal reveal-delay-1">
       <div class="pa-icon">🏛️</div>
       <div class="pa-title">Corporate &amp; Commercial Law</div>
       <div class="pa-desc">Incorporation of companies, churches, clubs and professional bodies. Trade marks, copyrights, patents, expatriate quotas, mergers, joint ventures and regulatory compliance.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Corporate%20%26%20Commercial%20Law%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal reveal-delay-2">
       <div class="pa-icon">🏠</div>
       <div class="pa-title">Real Estate &amp; Property</div>
       <div class="pa-desc">Lease, rental, sale and purchase of land, houses, farms and estates throughout Nigeria and select international markets. We represent developers, individual and institutional investors.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Real%20Estate%20%26%20Property%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal">
       <div class="pa-icon">💳</div>
       <div class="pa-title">Debt Recovery</div>
       <div class="pa-desc">Acting on behalf of financial institutions, banks, individuals and licensed money lenders locally and internationally for secured and unsecured loans. We handle restructuring and problematic debts.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Debt%20Recovery%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal reveal-delay-1">
       <div class="pa-icon">👪</div>
       <div class="pa-title">Family Law &amp; Estates</div>
       <div class="pa-desc">Divorce, separation, custody, welfare and maintenance. Administration of estates, drafting of Power of Attorney, Trusts, Wills and probate under Nigerian law.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Family%20Law%20%26%20Estates%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal reveal-delay-2">
       <div class="pa-icon">🛢️</div>
       <div class="pa-title">Oil &amp; Gas / Maritime</div>
       <div class="pa-desc">Legal opinions for investors in the oil industry, Joint Venture Agreements and Product Sharing Contracts. Ship registration, mortgages, cargo claims, charter-party disputes and admiralty matters.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Oil%20%26%20Gas%20%2F%20Maritime%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal">
       <div class="pa-icon">💻</div>
       <div class="pa-title">IP &amp; Technology Law</div>
       <div class="pa-desc">Acquisitions, registration and protection of intellectual property rights, franchising, licensing, trademarks, software procurement, media, communications and entertainment law.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20IP%20%26%20Technology%20Law%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal reveal-delay-1">
       <div class="pa-icon">📊</div>
       <div class="pa-title">Taxation</div>
       <div class="pa-desc">Federal, state and local tax planning, audits and compliance. We counsel foreign companies with Nigerian operations and charitable organisations on tax matters, and assist clients in managing tax exposures.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Taxation%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
-    <div class="pa-card">
+    <div class="pa-card reveal reveal-delay-2">
       <div class="pa-icon">✈️</div>
       <div class="pa-title">Aviation Law</div>
       <div class="pa-desc">Aircraft financing, bilateral negotiations and regulatory matters. We advise on cargo, passenger and liability claims under the Warsaw Convention and Montreal Protocol.</div>
-      <a href="#contact" class="pa-link">Enquire →</a>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20enquire%20about%20Aviation%20Law%20services." class="pa-link" target="_blank" rel="noopener">Enquire on WhatsApp →</a>
     </div>
   </div>
 </section>
 
 <!-- TEAM -->
 <section class="team" id="team">
-  <div class="section-label">
-    <div class="section-line"></div>
-    <span>Our Attorneys</span>
-  </div>
-  <h2 class="section-title">Meet Our Team</h2>
+  <div class="section-label reveal"><div class="section-line"></div><span>Our Attorneys</span></div>
+  <h2 class="section-title reveal">Meet Our Team</h2>
   <div class="team-grid">
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #0a1628 100%);">
-          <div class="team-initials">EO</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Emeka Onohwakpor, Esq.</div>
-          <div class="team-role">Principal Attorney</div>
-          <div class="team-bar">
-            <span class="team-tag">Litigation</span>
-            <span class="team-tag">Corporate</span>
-            <span class="team-tag">Real Estate</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#1a3a6b 0%,#0a1628 100%)"><div class="team-initials">EO</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Emeka Onohwakpor, Esq.</div><div class="team-role">Principal Attorney</div><div class="team-bar"><span class="team-tag">Litigation</span><span class="team-tag">Corporate</span><span class="team-tag">Real Estate</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1e52a0 0%, #0a1628 100%);">
-          <div class="team-initials">CE</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Chris Ewuzie, Esq.</div>
-          <div class="team-role">Partner</div>
-          <div class="team-bar">
-            <span class="team-tag">Maritime</span>
-            <span class="team-tag">Corporate</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#1e52a0 0%,#0a1628 100%)"><div class="team-initials">CE</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Chris Ewuzie, Esq.</div><div class="team-role">Partner</div><div class="team-bar"><span class="team-tag">Maritime</span><span class="team-tag">Corporate</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #2d7dd2 0%, #0a1628 100%);">
-          <div class="team-initials">DC</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Dr. Collins Okpanam, Esq.</div>
-          <div class="team-role">Partner · PhD (IP Law)</div>
-          <div class="team-bar">
-            <span class="team-tag">IP Law</span>
-            <span class="team-tag">Maritime</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal reveal-delay-2">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#2d7dd2 0%,#0a1628 100%)"><div class="team-initials">DC</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Dr. Collins Okpanam, Esq.</div><div class="team-role">Partner · PhD (IP Law)</div><div class="team-bar"><span class="team-tag">IP Law</span><span class="team-tag">Maritime</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #060e1c 100%);">
-          <div class="team-initials">CI</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Comfort Iwuchukwu, Esq.</div>
-          <div class="team-role">Consultant · FCIS London</div>
-          <div class="team-bar">
-            <span class="team-tag">ADR</span>
-            <span class="team-tag">Commercial</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal reveal-delay-3">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#1a3a6b 0%,#060e1c 100%)"><div class="team-initials">CI</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Comfort Iwuchukwu, Esq.</div><div class="team-role">Consultant · FCIS London</div><div class="team-bar"><span class="team-tag">ADR</span><span class="team-tag">Commercial</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1e52a0 0%, #060e1c 100%);">
-          <div class="team-initials">SS</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Salewa Sobande, Esq.</div>
-          <div class="team-role">Associate</div>
-          <div class="team-bar">
-            <span class="team-tag">Tax Law</span>
-            <span class="team-tag">Research</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#1e52a0 0%,#060e1c 100%)"><div class="team-initials">SS</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Salewa Sobande, Esq.</div><div class="team-role">Associate</div><div class="team-bar"><span class="team-tag">Tax Law</span><span class="team-tag">Research</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1a3a6b 0%, #0a1628 100%);">
-          <div class="team-initials">LE</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Lucky Erewa, Esq.</div>
-          <div class="team-role">Associate · Head, Benin Office</div>
-          <div class="team-bar">
-            <span class="team-tag">Debt Recovery</span>
-            <span class="team-tag">Litigation</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal reveal-delay-1">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#1a3a6b 0%,#0a1628 100%)"><div class="team-initials">LE</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Lucky Erewa, Esq.</div><div class="team-role">Associate · Head, Benin Office</div><div class="team-bar"><span class="team-tag">Debt Recovery</span><span class="team-tag">Litigation</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #2d7dd2 0%, #060e1c 100%);">
-          <div class="team-initials">OH</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Onams Harry-Ayerite, Esq.</div>
-          <div class="team-role">Head, Port Harcourt</div>
-          <div class="team-bar">
-            <span class="team-tag">Maritime</span>
-            <span class="team-tag">Commercial</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal reveal-delay-2">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#2d7dd2 0%,#060e1c 100%)"><div class="team-initials">OH</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Onams Harry-Ayerite, Esq.</div><div class="team-role">Head, Port Harcourt</div><div class="team-bar"><span class="team-tag">Maritime</span><span class="team-tag">Commercial</span></div></div></div>
     </div>
-    <div class="team-card">
-      <div class="team-photo">
-        <div class="team-photo-inner" style="background: linear-gradient(160deg, #1e52a0 0%, #0a1628 100%);">
-          <div class="team-initials">AN</div>
-        </div>
-        <div class="team-overlay"></div>
-        <div class="team-info">
-          <div class="team-name">Alozie Nmerengwa, Esq.</div>
-          <div class="team-role">Head, Abuja Operations</div>
-          <div class="team-bar">
-            <span class="team-tag">Corporate</span>
-            <span class="team-tag">Mediation</span>
-          </div>
-        </div>
-      </div>
+    <div class="team-card reveal reveal-delay-3">
+      <div class="team-photo"><div class="team-photo-inner" style="background:linear-gradient(160deg,#1e52a0 0%,#0a1628 100%)"><div class="team-initials">AN</div></div><div class="team-overlay"></div><div class="team-info"><div class="team-name">Alozie Nmerengwa, Esq.</div><div class="team-role">Head, Abuja Operations</div><div class="team-bar"><span class="team-tag">Corporate</span><span class="team-tag">Mediation</span></div></div></div>
     </div>
   </div>
 </section>
 
 <!-- OFFICES -->
 <section class="offices" id="offices">
-  <div class="section-label" style="justify-content:center;">
-    <div class="section-line"></div>
-    <span>Our Locations</span>
-    <div class="section-line"></div>
+  <div class="section-label reveal" style="justify-content:center">
+    <div class="section-line"></div><span>Our Locations</span><div class="section-line"></div>
   </div>
-  <h2 class="section-title" style="text-align:center;">Offices Across Nigeria</h2>
+  <h2 class="section-title reveal" style="text-align:center">Offices Across Nigeria</h2>
   <div class="offices-grid">
-    <div class="office-card">
+    <div class="office-card reveal">
       <div class="office-city">🏙️ Lagos</div>
       <div class="office-contact">
         <strong>Head Office</strong>
@@ -1195,7 +713,7 @@
         emekalaw@yahoo.com
       </div>
     </div>
-    <div class="office-card">
+    <div class="office-card reveal reveal-delay-1">
       <div class="office-city">🏛️ Abuja</div>
       <div class="office-contact">
         <strong>FCT Office</strong>
@@ -1204,7 +722,7 @@
         Alozie Nmerengwa, Esq.
       </div>
     </div>
-    <div class="office-card">
+    <div class="office-card reveal reveal-delay-2">
       <div class="office-city">🌊 Port Harcourt</div>
       <div class="office-contact">
         <strong>Rivers State</strong>
@@ -1213,7 +731,7 @@
         Onams Harry-Ayerite, Esq.
       </div>
     </div>
-    <div class="office-card">
+    <div class="office-card reveal reveal-delay-3">
       <div class="office-city">🏢 Onitsha</div>
       <div class="office-contact">
         <strong>Anambra State</strong>
@@ -1222,7 +740,7 @@
         Maduka Ewuzie, Esq.
       </div>
     </div>
-    <div class="office-card">
+    <div class="office-card reveal reveal-delay-4">
       <div class="office-city">🌿 Sapele</div>
       <div class="office-contact">
         <strong>Delta State</strong>
@@ -1236,46 +754,34 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="testimonials">
-  <div class="section-label">
-    <div class="section-line"></div>
-    <span>Client Testimonials</span>
-  </div>
-  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="section-label reveal"><div class="section-line"></div><span>Client Testimonials</span></div>
+  <h2 class="section-title reveal">What Our Clients Say</h2>
   <div class="testi-grid">
-    <div class="testi-card">
+    <div class="testi-card reveal">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">Emeka Onohwakpor &amp; Co handled our multi-million naira commercial dispute with exceptional professionalism. Their strategic approach secured a favourable judgement we thought impossible.</div>
       <div class="testi-author">
         <div class="testi-avatar">OA</div>
-        <div>
-          <div class="testi-name">Oluwaseun Afolabi</div>
-          <div class="testi-company">MD, Afolabi Holdings Ltd</div>
-        </div>
+        <div><div class="testi-name">Oluwaseun Afolabi</div><div class="testi-company">MD, Afolabi Holdings Ltd</div></div>
       </div>
     </div>
-    <div class="testi-card">
+    <div class="testi-card reveal reveal-delay-1">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">The team guided us through a complex real estate acquisition involving multiple parties. Their attention to title documentation saved us from what could have been a catastrophic dispute.</div>
       <div class="testi-author">
         <div class="testi-avatar">NK</div>
-        <div>
-          <div class="testi-name">Ngozi Kalu</div>
-          <div class="testi-company">CEO, NKL Properties</div>
-        </div>
+        <div><div class="testi-name">Ngozi Kalu</div><div class="testi-company">CEO, NKL Properties</div></div>
       </div>
     </div>
-    <div class="testi-card">
+    <div class="testi-card reveal reveal-delay-2">
       <div class="testi-quote">"</div>
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">Their debt recovery team recovered a long-standing sum we had nearly written off. Relentless, professional and result-oriented — exactly what you need from a legal partner.</div>
       <div class="testi-author">
         <div class="testi-avatar">EM</div>
-        <div>
-          <div class="testi-name">Emmanuel Martins</div>
-          <div class="testi-company">Director, FinServe Nigeria</div>
-        </div>
+        <div><div class="testi-name">Emmanuel Martins</div><div class="testi-company">Director, FinServe Nigeria</div></div>
       </div>
     </div>
   </div>
@@ -1284,85 +790,71 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-grid">
-    <div>
-      <div class="section-label">
-        <div class="section-line"></div>
-        <span>Get In Touch</span>
-      </div>
+    <div class="reveal">
+      <div class="section-label"><div class="section-line"></div><span>Get In Touch</span></div>
       <h2 class="section-title">Request a<br>Consultation</h2>
       <p class="contact-intro">We offer confidential, obligation-free initial consultations. Share your legal matter and our team will advise you on the best path forward.</p>
       <div class="contact-info">
         <div class="contact-item">
           <div class="contact-icon">📍</div>
-          <div>
-            <div class="contact-item-label">Head Office</div>
-            <div class="contact-item-value">20 Adebola Street, Off Adeniran Ogunsanya<br>Surulere, Lagos, Nigeria</div>
-          </div>
+          <div><div class="contact-item-label">Head Office</div><div class="contact-item-value">20 Adebola Street, Off Adeniran Ogunsanya<br>Surulere, Lagos, Nigeria</div></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">📞</div>
-          <div>
-            <div class="contact-item-label">Phone</div>
-            <div class="contact-item-value">+234 802 290 3889 · +234 704 109 5806</div>
-          </div>
+          <div><div class="contact-item-label">Phone</div><div class="contact-item-value"><a href="tel:+2348022903889" style="color:inherit;text-decoration:none">+234 802 290 3889</a> · <a href="tel:+2347041095806" style="color:inherit;text-decoration:none">+234 704 109 5806</a></div></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">✉️</div>
-          <div>
-            <div class="contact-item-label">Email</div>
-            <div class="contact-item-value">emekalaw@yahoo.com</div>
-          </div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-value"><a href="mailto:emekalaw@yahoo.com" style="color:inherit;text-decoration:none">emekalaw@yahoo.com</a></div></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">🕐</div>
-          <div>
-            <div class="contact-item-label">Office Hours</div>
-            <div class="contact-item-value">Monday – Friday: 8:00 AM – 6:00 PM</div>
-          </div>
+          <div><div class="contact-item-label">Office Hours</div><div class="contact-item-value">Monday – Friday: 8:00 AM – 6:00 PM</div></div>
         </div>
       </div>
+      <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20would%20like%20to%20book%20a%20consultation." class="wa-btn" target="_blank" rel="noopener">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat with Us on WhatsApp
+      </a>
     </div>
-    <div class="contact-form">
+    <div class="contact-form reveal reveal-delay-2" id="contact-form-wrapper">
       <h3 class="form-title">Send Us a Message</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">First Name</label>
-          <input type="text" class="form-input" placeholder="John">
+      <div id="form-body">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" id="f-first" placeholder="John"></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" id="f-last" placeholder="Doe"></div>
         </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="f-email" placeholder="john@example.com"></div>
+        <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" class="form-input" id="f-phone" placeholder="+234 800 000 0000"></div>
         <div class="form-group">
-          <label class="form-label">Last Name</label>
-          <input type="text" class="form-input" placeholder="Doe">
+          <label class="form-label">Practice Area</label>
+          <select class="form-select" id="f-area">
+            <option value="">Select a practice area</option>
+            <option>Litigation &amp; Arbitration</option>
+            <option>Corporate &amp; Commercial Law</option>
+            <option>Real Estate &amp; Property</option>
+            <option>Debt Recovery</option>
+            <option>Family Law &amp; Estates</option>
+            <option>Oil &amp; Gas / Maritime</option>
+            <option>IP &amp; Technology Law</option>
+            <option>Taxation</option>
+            <option>Aviation Law</option>
+            <option>Other</option>
+          </select>
         </div>
+        <div class="form-group"><label class="form-label">Brief Description of Matter</label><textarea class="form-textarea" id="f-msg" placeholder="Please briefly describe your legal matter…"></textarea></div>
+        <button class="form-submit" onclick="submitForm()">Submit Enquiry</button>
       </div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" placeholder="john@example.com">
+      <div class="form-success" id="form-success">
+        <div class="success-icon">✅</div>
+        <h3>Message Received</h3>
+        <p>Thank you for reaching out to Thompson Chambers. A member of our team will contact you within <strong style="color:var(--gold)">24 hours</strong>.</p>
+        <br>
+        <a href="https://wa.me/2348022903889?text=Hello%20Thompson%20Chambers%2C%20I%20just%20sent%20an%20enquiry%20via%20your%20website%20and%20wanted%20to%20follow%20up." class="wa-btn" target="_blank" rel="noopener" style="margin-top:8px;display:inline-flex">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Follow Up on WhatsApp
+        </a>
       </div>
-      <div class="form-group">
-        <label class="form-label">Phone Number</label>
-        <input type="tel" class="form-input" placeholder="+234 800 000 0000">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Practice Area</label>
-        <select class="form-select">
-          <option value="">Select a practice area</option>
-          <option>Litigation &amp; Arbitration</option>
-          <option>Corporate &amp; Commercial Law</option>
-          <option>Real Estate &amp; Property</option>
-          <option>Debt Recovery</option>
-          <option>Family Law &amp; Estates</option>
-          <option>Oil &amp; Gas / Maritime</option>
-          <option>IP &amp; Technology Law</option>
-          <option>Taxation</option>
-          <option>Aviation Law</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Brief Description of Matter</label>
-        <textarea class="form-textarea" placeholder="Please briefly describe your legal matter..."></textarea>
-      </div>
-      <button class="form-submit" onclick="alert('Thank you! We will be in touch within 24 hours.')">Submit Enquiry</button>
     </div>
   </div>
 </section>
@@ -1371,44 +863,38 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="nav-logo">
+      <div class="nav-logo" style="gap:14px">
         <div class="nav-crest">E</div>
-        <div class="nav-brand">
-          Emeka Onohwakpor &amp; Co.
-          <span>Thompson Chambers · Notary Public</span>
-        </div>
+        <div class="nav-brand">Emeka Onohwakpor &amp; Co.<span>Thompson Chambers · Notary Public</span></div>
       </div>
-      <p>Delivering practical, dynamic and proactive legal advice across Nigeria and internationally since establishment. We are committed to building enduring client relationships grounded in trust and results.</p>
+      <p>Delivering practical, dynamic and proactive legal advice across Nigeria and internationally since establishment. Committed to building enduring client relationships grounded in trust and results.</p>
     </div>
     <div class="footer-col">
       <h4>Practice Areas</h4>
       <ul>
-        <li><a href="#">Litigation &amp; Arbitration</a></li>
-        <li><a href="#">Corporate Law</a></li>
-        <li><a href="#">Real Estate</a></li>
-        <li><a href="#">Debt Recovery</a></li>
-        <li><a href="#">Oil &amp; Gas</a></li>
-        <li><a href="#">IP &amp; Technology</a></li>
+        <li><a href="#practice">Litigation &amp; Arbitration</a></li>
+        <li><a href="#practice">Corporate Law</a></li>
+        <li><a href="#practice">Real Estate</a></li>
+        <li><a href="#practice">Debt Recovery</a></li>
+        <li><a href="#practice">Oil &amp; Gas</a></li>
+        <li><a href="#practice">IP &amp; Technology</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>The Firm</h4>
       <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Our Team</a></li>
-        <li><a href="#">Our Offices</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Pro Bono</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#offices">Our Offices</a></li>
+        <li><a href="#contact">Consultation</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Resources</h4>
+      <h4>Contact</h4>
       <ul>
-        <li><a href="#">Legal Blog</a></li>
-        <li><a href="#">Client Portal</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
+        <li><a href="tel:+2348022903889">+234 802 290 3889</a></li>
+        <li><a href="mailto:emekalaw@yahoo.com">emekalaw@yahoo.com</a></li>
+        <li><a href="https://wa.me/2348022903889" target="_blank" rel="noopener" style="color:#25d366 !important">WhatsApp Us</a></li>
       </ul>
     </div>
   </div>
@@ -1422,13 +908,28 @@
   </div>
 </footer>
 
-<!-- ══════════════════════════════════════
-     THOMPSON CHAMBERS — AI LEGAL ASSISTANT
-     Chat calls /api/chat (Vercel serverless)
-     API key lives ONLY in Vercel env vars
-     ══════════════════════════════════════ -->
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-<button id="chat-fab" onclick="toggleChat()" aria-label="Open legal assistant chatbot">
+<!-- ENQUIRY MODAL -->
+<div class="modal-overlay" id="enquiry-modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-icon" id="modal-icon">⚖️</div>
+    <h3>Enquire About <span class="modal-area" id="modal-area-name"></span></h3>
+    <p>Our attorneys are ready to assist you. Choose how you'd like to reach us for a confidential consultation.</p>
+    <div class="modal-actions">
+      <a id="modal-wa-btn" href="#" class="wa-btn" target="_blank" rel="noopener">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+      <a href="#contact" class="btn-outline" onclick="closeModalBtn()" style="color:var(--white);border-color:rgba(255,255,255,0.3);padding:13px 24px">Send a Message</a>
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT FAB -->
+<button id="chat-fab" onclick="toggleChat()" aria-label="Open legal assistant">
   ⚖️
   <div class="fab-badge">AI</div>
 </button>
@@ -1438,51 +939,119 @@
     <div id="chat-header-icon">⚖️</div>
     <div id="chat-header-text">
       <strong>Thompson Legal Assistant</strong>
-      <span>Powered by Gemini · General guidance only</span>
+      <span><span class="chat-online"></span>General guidance only</span>
     </div>
     <button id="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
   </div>
-
   <div id="chat-messages"></div>
-
   <div id="chat-suggestions">
     <button class="suggestion-chip" onclick="sendSuggestion(this)">How do I register a company?</button>
     <button class="suggestion-chip" onclick="sendSuggestion(this)">What is conveyancing?</button>
     <button class="suggestion-chip" onclick="sendSuggestion(this)">How does debt recovery work?</button>
     <button class="suggestion-chip" onclick="sendSuggestion(this)">What is arbitration?</button>
   </div>
-
   <div id="chat-input-area">
-    <textarea id="chat-input" placeholder="Ask a general legal question…" rows="1"
-      onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-    <button id="chat-send" onclick="sendMessage()" aria-label="Send message">➤</button>
+    <textarea id="chat-input" placeholder="Ask a general legal question…" rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button id="chat-send" onclick="sendMessage()" aria-label="Send">➤</button>
   </div>
   <div id="chat-disclaimer">General information only · Not legal advice · Contact us for professional counsel</div>
 </div>
 
 <script>
-(function () {
-  'use strict';
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  const bar = document.getElementById('progress-bar');
+  const backTop = document.getElementById('back-top');
+  const scrolled = window.scrollY > 80;
+  nav.classList.toggle('scrolled', scrolled);
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  bar.style.width = pct + '%';
+  backTop.classList.toggle('visible', window.scrollY > 400);
+});
 
-  // ── All requests go to YOUR Vercel serverless function ──
-  // The Gemini API key never touches the browser.
+// ── MOBILE MENU ──
+window.toggleMenu = function() {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobile-menu');
+  h.classList.toggle('active');
+  m.classList.toggle('open');
+};
+window.closeMenu = function() {
+  document.getElementById('hamburger').classList.remove('active');
+  document.getElementById('mobile-menu').classList.remove('open');
+};
+
+// ── SCROLL REVEAL ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── COUNTER ANIMATION ──
+const counters = document.querySelectorAll('.count-up');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(timer);
+      }, 16);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// ── ENQUIRY MODAL ──
+window.openModal = function(area, icon) {
+  document.getElementById('modal-area-name').textContent = area;
+  document.getElementById('modal-icon').textContent = icon;
+  const msg = encodeURIComponent('Hello Thompson Chambers, I would like to enquire about ' + area + ' services.');
+  document.getElementById('modal-wa-btn').href = 'https://wa.me/2348022903889?text=' + msg;
+  document.getElementById('enquiry-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeModal = function(e) {
+  if (e.target === document.getElementById('enquiry-modal')) closeModalBtn();
+};
+window.closeModalBtn = function() {
+  document.getElementById('enquiry-modal').classList.remove('open');
+  document.body.style.overflow = '';
+};
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+// ── CONTACT FORM ──
+window.submitForm = function() {
+  const first = document.getElementById('f-first').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  if (!first || !email) { alert('Please fill in at least your name and email address.'); return; }
+  document.getElementById('form-body').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+};
+
+// ── CHATBOT ──
+(function() {
   const PROXY_URL = '/api/chat';
-
   let history = [];
   let isOpen = false;
   let busy = false;
 
-  /* ── TOGGLE ── */
-  window.toggleChat = function () {
+  window.toggleChat = function() {
     isOpen = !isOpen;
     document.getElementById('chat-window').classList.toggle('open', isOpen);
     if (isOpen && !document.getElementById('chat-messages').firstChild) {
-      addBot("Hello! I'm the Thompson Chambers legal assistant.\n\nI can answer general questions about Nigerian law — company registration, property transactions, contracts, family law, debt recovery, and more. How can I help you today?");
+      addBot("Hello! I'm the Thompson Chambers legal assistant.\n\nI can answer general questions about Nigerian law — company registration, property transactions, contracts, family law, debt recovery, and more.\n\nHow can I help you today?");
     }
-    if (isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 280);
+    if (isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
   };
 
-  /* ── MESSAGES ── */
   function addBot(text) { append('bot', text); }
   function addUser(text) { append('user', text); }
 
@@ -1491,7 +1060,7 @@
     const wrap = document.createElement('div');
     wrap.className = 'msg ' + role;
     const t = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    wrap.innerHTML = `<div class="msg-bubble">${esc(text).replace(/\n/g, '<br>')}</div><div class="msg-time">${t}</div>`;
+    wrap.innerHTML = '<div class="msg-bubble">' + esc(text).replace(/\n/g, '<br>') + '</div><div class="msg-time">' + t + '</div>';
     box.appendChild(wrap);
     box.scrollTop = box.scrollHeight;
   }
@@ -1500,32 +1069,25 @@
     const box = document.getElementById('chat-messages');
     const d = document.createElement('div');
     d.id = 'tc-typing'; d.className = 'msg bot';
-    d.innerHTML = `<div class="msg-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+    d.innerHTML = '<div class="msg-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
     box.appendChild(d);
     box.scrollTop = box.scrollHeight;
   }
 
-  function hideTyping() {
-    const el = document.getElementById('tc-typing');
-    if (el) el.remove();
-  }
+  function hideTyping() { const el = document.getElementById('tc-typing'); if (el) el.remove(); }
 
-  function esc(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-  }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  /* ── SEND ── */
-  window.sendSuggestion = function (btn) {
+  window.sendSuggestion = function(btn) {
     document.getElementById('chat-suggestions').style.display = 'none';
     dispatch(btn.textContent.trim());
   };
 
-  window.sendMessage = function () {
+  window.sendMessage = function() {
     const inp = document.getElementById('chat-input');
     const text = inp.value.trim();
     if (!text || busy) return;
-    inp.value = '';
-    inp.style.height = 'auto';
+    inp.value = ''; inp.style.height = 'auto';
     dispatch(text);
   };
 
@@ -1534,48 +1096,23 @@
     busy = true;
     document.getElementById('chat-send').disabled = true;
     document.getElementById('chat-suggestions').style.display = 'none';
-
     addUser(text);
     history.push({ role: 'user', parts: [{ text }] });
     showTyping();
-
     try {
-      const res = await fetch(PROXY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
-      });
-
+      const res = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history }) });
       const data = await res.json();
       hideTyping();
-
-      if (!res.ok || data.error) {
-        addBot('Sorry, something went wrong: ' + (data.error || 'Unknown error') + '\n\nPlease try again or contact us directly.');
-        history.pop();
-      } else {
-        history.push({ role: 'model', parts: [{ text: data.reply }] });
-        addBot(data.reply);
-      }
-    } catch (err) {
-      hideTyping();
-      history.pop();
-      addBot('Network error — please check your connection and try again.');
-    }
-
+      if (!res.ok || data.error) { addBot('Sorry, something went wrong. Please try again or contact us directly on WhatsApp.'); history.pop(); }
+      else { history.push({ role: 'model', parts: [{ text: data.reply }] }); addBot(data.reply); }
+    } catch (err) { hideTyping(); history.pop(); addBot('Network error — please check your connection and try again.'); }
     busy = false;
     document.getElementById('chat-send').disabled = false;
   }
 
-  window.handleKey = function (e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  };
-
-  window.autoResize = function (el) {
-    el.style.height = 'auto';
-    el.style.height = Math.min(el.scrollHeight, 100) + 'px';
-  };
+  window.handleKey = function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } };
+  window.autoResize = function(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; };
 })();
 </script>
-
 </body>
 </html>
